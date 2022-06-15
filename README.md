@@ -17,10 +17,38 @@ npm install @dreamworld/dw-menu
 
 Name              | Type                       | Default                 | Description
 ----------------- | -------------------------- | ----------------------- | ------------
-`open`            | `boolean`                  | `false`                 | Whether the menu should open and display.
-`anchor`          | `HTMLElement\|null`        | `null`                  | Determines from which element the floating menu should calculate sizing and position offsets.
-`actions`         | `array`                    | `undefined`             | Represent total available actions / sub actions in the toolbar.
-`disabledActions` | `object`                   | `undefined`             | Specifies actiosn which are disabled. key = action name, value = Tooltip message to be shown for that action. key = action name, value = Tooltip message to be shown for that action.
-`hiddenActions`   | `array`                    | `undefined`             | Hide actions from master actions.
+`opened`            | `boolean`                  | `false`                 | Whether the menu should open and display.
+`actions`         | `Action[]`                    | `undefined`             | Represent total available actions / sub actions in the toolbar.
+`disabledActions` | `Object`                   | `undefined`             | Specifies actions which are disabled. key = action name, value = Tooltip message to be shown for that action.
+`hiddenActions`   | `String[]`                    | `undefined`             | Actions specified here aren't visible (rendered) in the menu.
 `mobileMode`      | `boolean`                  | `false`                 | Displayed in bottom sheet in most of the cases. When menu items are overflowed Menu items are shown as Fit dialog.
+`anchor`          | `HTMLElement\|null`        | `null`                  | Element to which this menu should be anchored to. Applicable only when `mobileMode=false`.
+`keepAnchorVisible` | `boolean`                 | `false`                 | By default, When menu is opened, it covers (hides) anchor element. Set it to `true`, to make it visible. Applicable only when `mobileMode=false`.
+`placement`       | `String`                  | `top-start`              | Possible values: `top-start`, `top-end`, `bottom-start` and `bottom-end`. Applicable only when `mobileMode=false`.
+`heading`         | `String`                    | `null`                | Set it if you would like to show a heading on the menu. By default no heading. |
+`showClose`       | `boolean`    | `false`  | Shows an icon-button with close icon, on top-right corner. As menu is closed when user clicks away, this isn't needed any most cases. Though, if you would like to show it sometimes, e.g. when `mobileMode=true`. 
 
+
+
+### Action
+
+//TODO: Add table to define Action object
+
+
+//TODO: Add example actions.
+
+
+### Events
+
+
+# Design Decisions
+- No property to configure animation. Animation style would be as suggested by the material standards.
+
+# Future Enhancements
+- Keyboard Navigation
+- Custom Footer (via `slot` or template override)
+- Group Items
+- Tooltip for the Disabled Items.
+- Expandable Menu Items
+- `href` (Link) support for an Item. It may be set to open in a new window only. In that case, it’s trailing icon is also auto-chosen.
+- Sub-Menu: Opens another menu on the side of the current menu. (Long-term defer)

@@ -32,13 +32,56 @@ Name              | Type                       | Default                 | Descr
 
 ### Action
 
-//TODO: Add table to define Action object
+#### Object
 
+Key          | Type                | Description                  
+------------ | ------------------- | ---------------------------- 
+`name`       | `String`            | name of the action
+`label`      | `String`            | label of the action
+`icon`       | `String`            | Name of the icon to show as a leading icon
+`danger`     | `Boolean`           | Shows action in danger mode
+`type`       | `String`            | Type of the action. Use when action have `subAction`. possible values: `collapsible`. default value: `collapsible`
+`subActions` | `Array[]`           | Sub Actions of the current action. Used when group of actions comes under any same parent item.
 
-//TODO: Add example actions.
+#### Example
+ ##### Basic
+```object
+{
+  name: "ADD",
+  label: "Add",
+  icon: "add",
+}
+```
+
+##### With Sub Actions
+```object
+{
+  name: "ADD",
+  label: "Add",
+  icon: "add",
+  subAction: [
+    {name: "TOP", label: "Move to Top", icon: 'arrow_up'}, 
+    {name: "BOTTOM", label: "Move to Bottom", icon: 'arrow_down'}
+  ]
+}
+```
+
+##### Danger action
+```object
+{
+  name: "DELETE",
+  label: "Delete",
+  icon: "delete",
+  danger: true
+}
+```
 
 
 ### Events
+
+| Event Name | Target             | Detail             | Description
+| ---------- | ------------------ | ------------------ | -----------
+| `action`   | `dw-list-item`     | `name`             | Fired when a selection has been made via click or keyboard aciton. Provides `name` of the action in details.
 
 
 # Design Decisions

@@ -11,7 +11,16 @@ export class DwMenuDemo extends LitElement {
   ];
 
   render() {
-    return html` <dw-menu></dw-menu> `;
+    return html`
+      <button @click=${this._onOpen}>Open Menu</button>
+      <dw-menu></dw-menu>
+    `;
+  }
+
+  _onOpen(e) {
+    let menuEl = this.renderRoot.querySelector("dw-menu");
+    let triggerEl = e.target;
+    menuEl && menuEl.open(triggerEl);
   }
 }
 

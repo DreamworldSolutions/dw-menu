@@ -25,6 +25,7 @@
   "license": "ISC",
   "dependencies": {
     "@dreamworld/dw-dialog": "^4.1.1",
+    "@dreamworld/dw-icon-button": "^2.4.0",
     "lit": "^2.2.6"
   },
   "publishConfig": {

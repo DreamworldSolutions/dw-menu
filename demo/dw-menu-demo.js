@@ -29,6 +29,8 @@ const disabledActions = {
   SHARE: "Share is disabled"
 };
 
+const hiddenActions = ['HOME']
+
 export class DwMenuDemo extends LitElement {
   static styles = [
     css`
@@ -41,7 +43,7 @@ export class DwMenuDemo extends LitElement {
   render() {
     return html`
       <button @click=${this._onOpen}>Open Menu</button>
-      <dw-menu .actions=${actions} .disabledActions=${disabledActions}></dw-menu>
+      <dw-menu .actions=${actions} .disabledActions=${disabledActions} .hiddenActions=${hiddenActions}></dw-menu>
     `;
   }
 

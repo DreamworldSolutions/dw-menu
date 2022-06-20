@@ -157,6 +157,7 @@ export class DwMenu extends DwCompositeDialog {
     this.keepAnchorVisible = false;
     this.placement = "top-start";
     this.showClose = false;
+    this.hiddenActions = [];
   }
 
   // remove this custom getter/setter when `willUpdate` will be supported
@@ -211,7 +212,8 @@ export class DwMenu extends DwCompositeDialog {
 
   get _contentTemplate() {
     return html`
-      ${repeat(this.actions, (action, index) => {
+      ${repeat(this.actions.filter((action) => this.hiddenActions.indexOf(action.name) === -1), 
+      (action, index) => {
         return html`
           ${this._isActionDisabled(action.name)
             ? html`<span id=${action.name}>

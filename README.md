@@ -20,7 +20,7 @@ Name              | Type                       | Default                 | Descr
 `opened`            | `boolean`                  | `false`                 | Set to `true` to show it opened.
 `actions`         | `Action[]`                    | `undefined`             | Represent total available actions / sub actions in the menu.
 `disabledActions` | `Object`                   | `undefined`             | Specifies actions which are disabled. key = action name, value = Tooltip message to be shown for that action.
-`hiddenActions`   | `String[]`                    | `undefined`             | Actions specified here aren't visible (rendered) in the menu.
+`hiddenActions`   | `String[]`                    | `[]`             | Actions specified here aren't visible (rendered) in the menu.
 `mobileMode`      | `boolean`                  | `false`                 | Displayed in bottom sheet in most of the cases. When menu items are overflowed Menu items are shown as Fit dialog.
 `anchor`          | `HTMLElement`\|`null`        | `null`                  | Element to which this menu should be anchored to. Applicable only when `mobileMode=false`.
 `keepAnchorVisible` | `boolean`                 | `false`                 | By default, When menu is opened, it covers (hides) anchor element. Set it to `true`, to make it visible. Applicable only when `mobileMode=false`.

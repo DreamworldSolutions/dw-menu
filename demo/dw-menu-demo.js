@@ -2,6 +2,25 @@ import { LitElement, css, html } from "lit";
 import "../dw-menu.js";
 import "@dreamworld/dw-icon-button";
 
+const actions = [
+  {
+    name: 'ADD',
+    label: 'Add',
+    icon: 'add'
+  },
+  {
+    name: 'SHARE',
+    label: 'Share',
+    icon: 'share'
+  },
+  {
+    name: 'DELETE',
+    label: 'Delete',
+    icon: 'delete',
+    danger: true
+  }
+]
+
 export class DwMenuDemo extends LitElement {
   static styles = [
     css`
@@ -20,11 +39,11 @@ export class DwMenuDemo extends LitElement {
 
   render() {
     return html`
-      <dw-menu id="popover" heading="Popover heading" showClose placement="bottom-end"></dw-menu>
+      <dw-menu id="popover" heading="Popover heading" showClose placement="bottom-end" .actions=${actions}></dw-menu>
       <label>Popover</label>
       <dw-icon-button icon="more_vert" @click=${this._onPopover}></dw-icon-button>
 
-      <dw-menu id="bottom" heading="demo heading" showClose mobile-mode></dw-menu>
+      <dw-menu id="bottom" heading="demo heading" showClose mobile-mode .actions=${actions}></dw-menu>
       <label>Bottom Sheet</label>
       <dw-icon-button icon="more_vert" @click=${this._onBottom}></dw-icon-button>
     `;

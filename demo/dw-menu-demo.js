@@ -32,7 +32,7 @@ export class DwMenuDemo extends LitElement {
   render() {
     return html`
       <button @click=${this._onOpen}>Open Menu</button>
-      <dw-menu .actions=${actions}></dw-menu>
+      <dw-menu .actions=${actions} @action=${(e) => console.log("demo", e.detail)}></dw-menu>
     `;
   }
 

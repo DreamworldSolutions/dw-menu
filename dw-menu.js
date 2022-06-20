@@ -5,6 +5,7 @@ import { repeat } from "lit-html/directives/repeat";
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
 import "@dreamworld/dw-list-item";
 import "@dreamworld/dw-icon-button";
+import "@dreamworld/dw-tooltip";
 
 // Styles
 import * as TypographyLiterals from "@dreamworld/material-styles/typography-literals";
@@ -211,14 +212,34 @@ export class DwMenu extends DwCompositeDialog {
   get _contentTemplate() {
     return html`
       ${repeat(this.actions, (action, index) => {
-        return html`<dw-list-item
-          .title1="${action.label}"
-          .leadingIcon="${action.icon}"
-          ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
-          selectionMode="none"
-          ?danger="${action.danger}"
-          @click="${(e) => this._onAction(e, action)}"
-        ></dw-list-item>`;
+        return html`
+          ${this._isItemDisabled(action.name)
+            ? html`<span id=${action.name}>
+                <dw-list-item
+                  title1="${action.label}"
+                  leadingIcon=${action.icon}
+                  ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
+                  selectionMode="none"
+                  ?danger="${action.danger}"
+                  ?disabled=${this._isItemDisabled(action.name)}
+                  @click="${(e) => this._onAction(e, action)}"
+                ></dw-list-item>
+              </span>`
+            : html`<dw-list-item
+                title1="${action.label}"
+                leadingIcon=${action.icon}
+                ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
+                selectionMode="none"
+                ?danger="${action.danger}"
+                ?disabled=${this._isItemDisabled(action.name)}
+                @click="${(e) => this._onAction(e, action)}"
+              ></dw-list-item>`}
+          ${this._isItemDisabled(action.name)
+            ? html`<dw-tooltip for=${action.name} placement="bottom"
+                ><span>${this._getDisabledItemTooltip(action.name)}</span></dw-tooltip
+              >`
+            : html``}
+        `;
       })}
     `;
   }
@@ -236,6 +257,30 @@ export class DwMenu extends DwCompositeDialog {
     }
 
     this.popoverPlacement = this.placement;
+  }
+
+  /**
+   * Checks action is disabled or not
+   * @param {String} actionName name of the action
+   * @returns Boolean
+   */
+  _isItemDisabled(actionName) {
+    if (this.disabledActions && this.disabledActions.length === 0) {
+      return false;
+    }
+
+    let keys = Object.keys(this.disabledActions);
+    return keys.indexOf(actionName) !== -1;
+  }
+
+  /**
+   * to get disabled action tooltip text
+   *
+   * @param {String} actionName name of the action
+   * @returns String disabled action tooltip text
+   */
+  _getDisabledItemTooltip(actionName) {
+    return this.disabledActions[actionName];
   }
 
   /**

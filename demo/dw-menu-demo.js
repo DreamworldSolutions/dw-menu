@@ -4,9 +4,9 @@ import "@dreamworld/dw-icon-button";
 
 const actions = [
   {
-    name: 'ADD',
-    label: 'Add',
-    icon: 'add'
+    name: "ADD",
+    label: "Add",
+    icon: "add",
   },
   {
     name: 'SHARE',
@@ -14,12 +14,21 @@ const actions = [
     icon: 'share'
   },
   {
+    name: "HOME",
+    label: "Home",
+    icon: "home",
+  },
+  {
     name: 'DELETE',
     label: 'Delete',
     icon: 'delete',
     danger: true
   }
-]
+];
+
+const disabledActions = {
+  SHARE: "Share is disabled"
+};
 
 export class DwMenuDemo extends LitElement {
   static styles = [

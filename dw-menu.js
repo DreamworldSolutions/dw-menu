@@ -214,11 +214,18 @@ export class DwMenu extends DwCompositeDialog {
           ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
           selectionMode="none"
           ?danger=${action.danger}
+          .actionName=${action.name}
+          @click=${this._onAction}
         ></dw-list-item>`;
       })}
     `;
   }
 
+  /**
+   * set dialog configuration based on `mobileMode`
+   * If menu is in mobile mode dialog type is `modal` and placement is `bottom`
+   * otherwise placement value assigned to popoverPlacement
+   */
   _setDialogConfig() {
     if (this.mobileMode) {
       this.type = "modal";
@@ -227,6 +234,18 @@ export class DwMenu extends DwCompositeDialog {
     }
 
     this.popoverPlacement = this.placement;
+  }
+
+  /**
+   * trigger when action item is clicked
+   * close dialog when trigger
+   * 
+   * @param {Event} e dispatch `action` event
+   * set actionName in detail
+   */
+  _onAction(e) {
+    this.dispatchEvent(new CustomEvent('action', {detail: e.target.actionName}));
+    this.close();
   }
 }
 

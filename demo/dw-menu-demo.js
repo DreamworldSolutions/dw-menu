@@ -1,6 +1,25 @@
 import { LitElement, css, html } from "lit";
 import "../dw-menu.js";
 
+const actions = [
+  {
+    name: 'ADD',
+    label: 'Add',
+    icon: 'add'
+  },
+  {
+    name: 'SHARE',
+    label: 'Share',
+    icon: 'share'
+  },
+  {
+    name: 'DELETE',
+    label: 'Delete',
+    icon: 'delete',
+    danger: true
+  }
+]
+
 export class DwMenuDemo extends LitElement {
   static styles = [
     css`
@@ -13,7 +32,7 @@ export class DwMenuDemo extends LitElement {
   render() {
     return html`
       <button @click=${this._onOpen}>Open Menu</button>
-      <dw-menu></dw-menu>
+      <dw-menu .actions=${actions}></dw-menu>
     `;
   }
 

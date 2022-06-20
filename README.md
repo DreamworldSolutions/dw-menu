@@ -81,8 +81,14 @@ Key          | Type                | Description
 
 | Event Name | Target             | Detail             | Description
 | ---------- | ------------------ | ------------------ | -----------
-| `action`   | `dw-list-item`     | `name`             | Fired when a selection has been made via click or keyboard aciton. Provides `name` of the action in details.
+| `action`   | `dw-list-item`     | `name`             | Fired when a selection has been made via click or keyboard aciton. Provides `name` of the action in detail.
 
+### CSS Custom Properties
+
+| Name                           | Default            | Description
+| ------------------------------ | ------------------ | --------------
+| `--dw-menu-content-padding`    | 0                  | Padding of content area. 
+| `--dw-menu-action-danger`      | `#B00020`          | Danger action color
 
 # Design Decisions
 - No property to configure animation. Animation style would be as suggested by the material standards.

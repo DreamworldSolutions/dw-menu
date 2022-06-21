@@ -1,8 +1,9 @@
 import { css, html } from "lit-element";
+import { repeat } from "lit-html/directives/repeat";
 
 // View Element
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
-import "@dreamworld/dw-icon-button";
+import "@dreamworld/dw-list-item";
 
 /**
  * # <dw-menu>
@@ -22,6 +23,16 @@ export class DwMenu extends DwCompositeDialog {
     css`
       :host {
         display: block;
+        --dw-dialog-content-padding: 0;
+      }
+
+      :host([type="popover"]) .dialog__content {
+        padding: var(--dw-menu-content-padding, 0);
+      }
+
+      dw-list-item[danger] {
+        --mdc-theme-text-primary: var(--dw-menu-action-danger, #B00020);
+        --dw-icon-color: var(--dw-menu-action-danger, #B00020)
       }
 
       :host([type="popover"]) header,
@@ -142,11 +153,21 @@ export class DwMenu extends DwCompositeDialog {
   }
 
   get _contentTemplate() {
-    return html`Dw-menu`;
+    return html`
+      ${repeat(this.actions, (action, index) => {
+        return html`<dw-list-item
+          title1=${action.label}
+          leadingIcon=${action.icon}
+          hasLeadingIcon
+          selectionMode="none"
+          ?danger=${action.danger}
+        ></dw-list-item>`;
+      })}
+    `;
   }
 
   _setDialogConfig() {
-    if(this.mobileMode) {
+    if (this.mobileMode) {
       this.type = "modal";
       this.placement = "bottom";
       return;

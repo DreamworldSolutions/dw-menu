@@ -32,8 +32,8 @@ export class DwMenu extends DwCompositeDialog {
       }
 
       dw-list-item[danger] {
-        --mdc-theme-text-primary: var(--dw-menu-action-danger, #B00020);
-        --dw-icon-color: var(--dw-menu-action-danger, #B00020)
+        --mdc-theme-text-primary: var(--dw-menu-action-danger, #b00020);
+        --dw-icon-color: var(--dw-menu-action-danger, #b00020);
       }
 
       :host([type="popover"]) header,
@@ -138,6 +138,7 @@ export class DwMenu extends DwCompositeDialog {
     this.keepAnchorVisible = false;
     this.placement = "top-start";
     this.showClose = false;
+    this.hiddenActions = [];
   }
 
   connectedCallback() {
@@ -155,19 +156,21 @@ export class DwMenu extends DwCompositeDialog {
 
   get _contentTemplate() {
     return html`
-      ${repeat(this.actions, (action, index) => {
-        return html`
-          ${this._isItemDisabled(action.name)
-            ? html`<span id=${action.name}>
-                <dw-list-item
-                  title1=${action.label}
-                  leadingIcon=${action.icon}
-                  hasLeadingIcon
-                  selectionMode="none"
-                  ?danger=${action.danger}
-                  ?disabled=${this._isItemDisabled(action.name)}
-                  .actionName=${action.name}
-                  @click=${this._onAction}
+      ${repeat(
+        this.actions.filter((action) => this.hiddenActions.indexOf(action.name) === -1),
+        (action, index) => {
+          return html`
+            ${this._isItemDisabled(action.name)
+              ? html`<span id=${action.name}>
+                  <dw-list-item
+                    title1=${action.label}
+                    leadingIcon=${action.icon}
+                    hasLeadingIcon
+                    selectionMode="none"
+                    ?danger=${action.danger}
+                    ?disabled=${this._isItemDisabled(action.name)}
+                    .actionName=${action.name}
+                    @click=${this._onAction}
                 ></dw-list-item>
               </span>`
             : html`<dw-list-item

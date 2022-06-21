@@ -30,6 +30,8 @@ const disabledActions = {
   SHARE: "Share is disabled"
 };
 
+const hiddenActions = ['HOME']
+
 export class DwMenuDemo extends LitElement {
   static styles = [
     css`
@@ -48,11 +50,11 @@ export class DwMenuDemo extends LitElement {
 
   render() {
     return html`
-      <dw-menu .actions=${actions} id="popover" heading="Popover heading" showClose placement="bottom-end" .disabledActions=${disabledActions} @action=${(e) => console.log("demo", e.detail)}></dw-menu>
+      <dw-menu .actions=${actions} id="popover" heading="Popover heading" showClose placement="bottom-end" .disabledActions=${disabledActions} .hiddenActions=${hiddenActions} @action=${(e) => console.log("demo", e.detail)}></dw-menu>
       <label>Popover</label>
       <dw-icon-button .actions=${actions} icon="more_vert" @click=${this._onPopover}></dw-icon-button>
 
-      <dw-menu .actions=${actions} id="bottom" heading="demo heading" showClose mobile-mode .disabledActions=${disabledActions} @action=${(e) => console.log("demo", e.detail)}></dw-menu>
+      <dw-menu .actions=${actions} id="bottom" heading="demo heading" showClose mobile-mode .disabledActions=${disabledActions} .hiddenActions=${hiddenActions} @action=${(e) => console.log("demo", e.detail)}></dw-menu>
       <label>Bottom Sheet</label>
       <dw-icon-button icon="more_vert" @click=${this._onBottom}></dw-icon-button>
     `;

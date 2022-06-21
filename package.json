@@ -26,6 +26,9 @@
   "dependencies": {
     "lit": "^2.2.6"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@open-wc/building-rollup": "^2.0.1",
     "@rollup/plugin-commonjs": "^22.0.0",

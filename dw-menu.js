@@ -1,5 +1,8 @@
 import { css, html } from "lit-element";
+
+// View Element
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
+import "@dreamworld/dw-icon-button";
 
 /**
  * # <dw-menu>
@@ -19,6 +22,29 @@ export class DwMenu extends DwCompositeDialog {
     css`
       :host {
         display: block;
+      }
+
+      :host([type="popover"]) header,
+      :host([type="modal"]) .mdc-dialog__title {
+        max-height: 56px;
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 0;
+      }
+
+      :host([type="modal"]) .mdc-dialog__title {
+        padding-left: 16px;
+      }
+
+      dw-icon-button {
+        width: max-content;
+        height: max-content;
+      }
+
+      .heading {
+        flex: 1;
+        display: flex;
+        align-items: center;
       }
     `,
   ];
@@ -96,7 +122,6 @@ export class DwMenu extends DwCompositeDialog {
     super();
     this.type = "popover";
 
-    this.opened = false;
     this.mobileMode = false;
     this.keepAnchorVisible = false;
     this.placement = "top-start";
@@ -107,6 +132,13 @@ export class DwMenu extends DwCompositeDialog {
     this._setDialogConfig();
 
     super.connectedCallback();
+  }
+
+  get _headerTemplate() {
+    return html`
+      ${this.showClose ? html`<dw-icon-button icon="close" dismiss @click=${(e) => console.log("close: invoked", e)}></dw-icon-button>` : html``}
+      ${this.heading ? html`<div class="heading">${this.heading}</div>` : html``}
+    `;
   }
 
   get _contentTemplate() {

@@ -1,24 +1,43 @@
 import { LitElement, css, html } from "lit";
 import "../dw-menu.js";
+import "@dreamworld/dw-icon-button";
 
 export class DwMenuDemo extends LitElement {
   static styles = [
     css`
       :host {
         display: block;
+        height: 100%;
+        width: 100%;
+      }
+
+      dw-icon-button {
+        width: max-content;
+        height: max-content;
       }
     `,
   ];
 
   render() {
     return html`
-      <button @click=${this._onOpen}>Open Menu</button>
-      <dw-menu></dw-menu>
+      <dw-menu id="popover" heading="Popover heading" showClose placement="bottom-end"></dw-menu>
+      <label>Popover</label>
+      <dw-icon-button icon="more_vert" @click=${this._onPopover}></dw-icon-button>
+
+      <dw-menu id="bottom" heading="demo heading" showClose mobile-mode></dw-menu>
+      <label>Bottom Sheet</label>
+      <dw-icon-button icon="more_vert" @click=${this._onBottom}></dw-icon-button>
     `;
   }
 
-  _onOpen(e) {
-    let menuEl = this.renderRoot.querySelector("dw-menu");
+  _onPopover(e) {
+    let menuEl = this.renderRoot.querySelector("#popover");
+    let triggerEl = e.target;
+    menuEl && menuEl.open(triggerEl);
+  }
+
+  _onBottom(e) {
+    let menuEl = this.renderRoot.querySelector("#bottom");
     let triggerEl = e.target;
     menuEl && menuEl.open(triggerEl);
   }

@@ -1,0 +1,25 @@
+{
+  "name": "@dreamworld/dw-menu",
+  "version": "0.0.0-development",
+  "main": "dw-menu.js",
+  "repository": "git@github.com:DreamworldSolutions/dw-menu.git",
+  "author": "Hiten Bhayani <hiten@hisab.co>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "semantic-release": "^19.0.3"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      {
+        "name": "feature/*",
+        "prerelease": "${name.replace(/^feature\\//g, \"\")}",
+        "channel": "${name.replace(/^feature\\//g, \"\")}"
+      }
+    ]
+  }
+}

@@ -32,6 +32,10 @@ export class DwMenu extends DwCompositeDialog {
         padding: 0;
       }
 
+      :host([type="modal"]) .mdc-dialog__title::before {
+        height: auto;
+      }
+
       :host([type="modal"]) .mdc-dialog__title {
         padding-left: 16px;
       }

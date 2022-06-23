@@ -26,6 +26,7 @@
   "dependencies": {
     "@dreamworld/dw-dialog": "^4.2.0-development.1",
     "@dreamworld/dw-icon-button": "^2.4.0",
+    "@dreamworld/material-styles": "^2.2.0",
     "lit": "^2.2.6"
   },
   "publishConfig": {

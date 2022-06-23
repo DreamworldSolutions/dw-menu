@@ -4,6 +4,9 @@ import { css, html } from "lit-element";
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
 import "@dreamworld/dw-icon-button";
 
+// Styles
+import * as TypographyLiterals from "@dreamworld/material-styles/typography-literals";
+
 /**
  * # <dw-menu>
  *
@@ -29,7 +32,8 @@ export class DwMenu extends DwCompositeDialog {
         max-height: 56px;
         display: flex;
         flex-direction: row-reverse;
-        padding: 0;
+        padding: var(--dw-menu-header-padding, 0 0 0 16px);
+        ${TypographyLiterals.headline6};
       }
 
       :host([type="popover"][_showHeader]) header,
@@ -39,10 +43,6 @@ export class DwMenu extends DwCompositeDialog {
 
       :host([type="modal"]) .mdc-dialog__title::before {
         height: auto;
-      }
-
-      :host([type="modal"]) .mdc-dialog__title {
-        padding-left: 16px;
       }
 
       dw-icon-button {

@@ -5,6 +5,7 @@ import { repeat } from "lit-html/directives/repeat";
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
 import "@dreamworld/dw-list-item";
 import "@dreamworld/dw-tooltip";
+import "@dreamworld/dw-icon-button";
 
 /**
  * # <dw-menu>

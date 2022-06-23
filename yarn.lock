@@ -1008,7 +1008,7 @@
   dependencies:
     lit-element "^2.2.0"
 
-"@dreamworld/material-styles@^2.1.0":
+"@dreamworld/material-styles@^2.1.0", "@dreamworld/material-styles@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@dreamworld/material-styles/-/material-styles-2.2.0.tgz#45d232cdd1b9b063a447d96316c9f9f08a16f5c4"
   integrity sha512-26ZnFaTZD0NdehrSuzJ7J1PLGv+Mo/rNVGegwIAlT49c3/c3rLJ6DbRfaTLAu4cKO2JWwkcZ01unywQet1QiOQ==

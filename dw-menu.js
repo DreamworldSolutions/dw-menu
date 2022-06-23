@@ -32,6 +32,11 @@ export class DwMenu extends DwCompositeDialog {
         padding: 0;
       }
 
+      :host([type="popover"][_showHeader]) header,
+      :host([type="modal"][_showHeader]) .mdc-dialog__title {
+        height: 56px;
+      }
+
       :host([type="modal"]) .mdc-dialog__title::before {
         height: auto;
       }
@@ -120,6 +125,12 @@ export class DwMenu extends DwCompositeDialog {
      * Though, if you would like to show it sometimes, e.g. when mobileMode=true.
      */
     showClose: { type: Boolean },
+
+    /**
+     * true when close button or heading is provided.
+     * use for set styles
+     */
+    _showHeader: { type: Boolean, reflect: true },
   };
 
   constructor() {
@@ -134,13 +145,20 @@ export class DwMenu extends DwCompositeDialog {
 
   connectedCallback() {
     this._setDialogConfig();
+    this._showHeader = Boolean(this.heading) || this.showClose;
 
     super.connectedCallback();
   }
 
   get _headerTemplate() {
     return html`
-      ${this.showClose ? html`<dw-icon-button icon="close" dismiss @click=${(e) => console.log("close: invoked", e)}></dw-icon-button>` : html``}
+      ${this.showClose
+        ? html`<dw-icon-button
+            icon="close"
+            dismiss
+            @click=${(e) => console.log("close: invoked", e)}
+          ></dw-icon-button>`
+        : html``}
       ${this.heading ? html`<div class="heading">${this.heading}</div>` : html``}
     `;
   }

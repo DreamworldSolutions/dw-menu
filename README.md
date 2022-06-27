@@ -90,7 +90,7 @@ Key          | Type                | Description
 # Future Enhancements
 - Keyboard Navigation
 - Custom Footer (via `slot` or template override)
-- Group Items
+- Group Items (divider)
 - Tooltip for the Disabled Items.
 - Expandable Menu Items
 - `href` (Link) support for an Item. It may be set to open in a new window only. In that case, it’s trailing icon is also auto-chosen.

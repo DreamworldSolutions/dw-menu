@@ -6,7 +6,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: yarn install --frozen-lockfile --non-ineractive && tsc
+      - run: yarn install --frozen-lockfile --non-ineractive && ./node_modules/.bin/tsc
       - run:
           name: Deploy
           command: |

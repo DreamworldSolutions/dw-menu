@@ -1,5 +1,6 @@
 import { LitElement, css, html } from "lit";
 import "../dw-menu.js";
+import "../dw-menu-temp";
 
 export class DwMenuDemo extends LitElement {
   static styles = [
@@ -14,6 +15,7 @@ export class DwMenuDemo extends LitElement {
     return html`
       <button @click=${this._onOpen}>Open Menu</button>
       <dw-menu></dw-menu>
+      <dw-menu-temp name="Hiten"></dw-menu-temp>
     `;
   }
 

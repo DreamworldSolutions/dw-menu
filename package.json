@@ -34,7 +34,10 @@
     "@open-wc/building-rollup": "^2.0.1",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@web/dev-server": "^0.1.31",
-    "semantic-release": "^19.0.3"
+    "@web/dev-server-esbuild": "^0.3.1",
+    "semantic-release": "^19.0.3",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
   },
   "release": {
     "branches": [

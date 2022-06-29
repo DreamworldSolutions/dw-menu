@@ -15,12 +15,12 @@ export class DwMenuDemo extends LitElement {
     return html`
       <button @click=${this._onOpen}>Open Menu</button>
       <dw-menu></dw-menu>
-      <dw-menu-temp name="Hiten"></dw-menu-temp>
+      <dw-menu-temp></dw-menu-temp>
     `;
   }
 
   _onOpen(e) {
-    let menuEl = this.renderRoot.querySelector("dw-menu");
+    let menuEl = this.renderRoot.querySelector("dw-menu-temp");
     let triggerEl = e.target;
     menuEl && menuEl.open(triggerEl);
   }

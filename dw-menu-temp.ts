@@ -1,4 +1,5 @@
 import { css, html } from "lit-element";
+// @ts-ignore: Unreachable code error
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog";
 import { customElement, property, state } from "lit/decorators.js";
 
@@ -18,6 +19,7 @@ interface SubActions {
   danger?: boolean;
 }
 
+// @ts-ignore: Unreachable code error
 @customElement("dw-menu-temp")
 export class DwMenuTemp extends DwCompositeDialog {
   static styles = [
@@ -30,7 +32,7 @@ export class DwMenuTemp extends DwCompositeDialog {
   ];
 
   @property({ type: Array })
-  actions?: Actions[];
+  actions: Actions[] | undefined;
 
   @property({ type: Object })
   disabledActions = undefined;
@@ -68,12 +70,16 @@ export class DwMenuTemp extends DwCompositeDialog {
 
   _setDialogConfig() {
     if (this.mobileMode) {
+      // @ts-ignore: Unreachable code error
       this.type = "modal";
+      // @ts-ignore: Unreachable code error
       this.placement = "bottom";
       return;
     }
 
+    // @ts-ignore: Unreachable code error
     this.type = "popover";
+    // @ts-ignore: Unreachable code error
     this.placement = "top-start";
   }
 }

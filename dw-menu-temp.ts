@@ -1,7 +1,6 @@
 import { css, html } from "lit-element";
-// @ts-ignore: Unreachable code error
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog";
-import { customElement, property, state } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 
 interface Actions {
   name: string;
@@ -22,7 +21,8 @@ interface SubActions {
 // @ts-ignore: Unreachable code error
 @customElement("dw-menu-temp")
 export class DwMenuTemp extends DwCompositeDialog {
-  static styles = [
+  // @ts-ignore: Unreachable code error
+  static override styles = [
     DwCompositeDialog.styles,
     css`
       h2 {
@@ -81,5 +81,11 @@ export class DwMenuTemp extends DwCompositeDialog {
     this.type = "popover";
     // @ts-ignore: Unreachable code error
     this.placement = "top-start";
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "dw-menu-temp": DwMenuTemp;
   }
 }

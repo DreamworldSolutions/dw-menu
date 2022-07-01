@@ -2,7 +2,6 @@
   "name": "@dreamworld/dw-menu",
   "version": "0.0.0-development",
   "main": "dw-menu.js",
-  "types": "dw-menu-temp.d.ts",
   "scripts": {
     "start": "web-dev-server"
   },

@@ -22,6 +22,14 @@ interface SubActions {
 // @ts-ignore: Unreachable code error
 @customElement("dw-menu-temp")
 export class DwMenuTemp extends DwCompositeDialog {
+  static styles = [
+    DwCompositeDialog.styles,
+    css`
+      h2 {
+        color: red;
+      }
+    `,
+  ];
 
   @property({ type: Array })
   actions: Actions[] | undefined;

@@ -1,4 +1,5 @@
-import { LitElement, css, html } from "lit";
+import { css, html } from "lit-element";
+import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
 
 /**
  * # <dw-menu>
@@ -12,13 +13,22 @@ import { LitElement, css, html } from "lit";
  * -
  */
 
-export class DwMenu extends LitElement {
+export class DwMenu extends DwCompositeDialog {
+  static styles = [
+    DwCompositeDialog.styles,
+    css`
+      :host {
+        display: block;
+      }
+    `,
+  ];
+
   static properties = {
     /**
      * Input Property
      * Whether the menu should open and display.
      */
-    opened: { type: Boolean },
+    // opened: { type: Boolean }, // Conflict with dialog's opened property
 
     /**
      * Input Property
@@ -66,7 +76,7 @@ export class DwMenu extends LitElement {
      * Possible values: top-start, top-end, bottom-start and bottom-end.
      * Applicable only when mobileMode=false.
      */
-    placement: { type: String },
+    // placement: { type: String }, // Conflict with dialog's placement property when dialog is modal
 
     /**
      * Set it if you would like to show a heading on the menu.
@@ -84,23 +94,33 @@ export class DwMenu extends LitElement {
 
   constructor() {
     super();
+    this.type = "popover";
+
     this.opened = false;
     this.mobileMode = false;
     this.keepAnchorVisible = false;
     this.placement = "top-start";
-    this.showClose = false
+    this.showClose = false;
   }
 
-  static styles = [
-    css`
-      :host {
-        display: block;
-      }
-    `,
-  ];
+  connectedCallback() {
+    this._setDialogConfig();
 
-  render() {
-    return html`Dw-Menu`;
+    super.connectedCallback();
+  }
+
+  get _contentTemplate() {
+    return html`Dw-menu`;
+  }
+
+  _setDialogConfig() {
+    if (this.mobileMode) {
+      this.type = "modal";
+      this.placement = "bottom";
+      return;
+    }
+
+    this.popoverPlacement = this.placement;
   }
 }
 

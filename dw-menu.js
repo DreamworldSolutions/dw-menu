@@ -114,7 +114,7 @@ export class DwMenu extends DwCompositeDialog {
   }
 
   _setDialogConfig() {
-    if(this.mobileMode) {
+    if (this.mobileMode) {
       this.type = "modal";
       this.placement = "bottom";
       return;

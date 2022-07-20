@@ -138,6 +138,7 @@ export class DwMenu extends DwCompositeDialog {
     this.showClose = false;
   }
 
+  // remove this custom getter/setter when `willUpdate` will be supported
   set heading(value) {
     let oldValue = this._heading;
 
@@ -155,6 +156,7 @@ export class DwMenu extends DwCompositeDialog {
     return this._heading;
   }
 
+  // remove this custom getter/setter when `willUpdate` will be supported
   set showClose(value) {
     let oldValue = this._showClose;
 

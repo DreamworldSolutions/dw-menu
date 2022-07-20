@@ -1,5 +1,11 @@
 import { css, html } from "lit-element";
+
+// View Element
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
+import "@dreamworld/dw-icon-button";
+
+// Styles
+import * as TypographyLiterals from "@dreamworld/material-styles/typography-literals";
 
 /**
  * # <dw-menu>
@@ -19,6 +25,30 @@ export class DwMenu extends DwCompositeDialog {
     css`
       :host {
         display: block;
+      }
+
+      :host([type="popover"]) header,
+      :host([type="modal"]) .mdc-dialog__title {
+        max-height: 56px;
+        display: flex;
+        flex-direction: row-reverse;
+        padding: var(--dw-menu-header-padding, 0 0 0 16px);
+        ${TypographyLiterals.headline6};
+      }
+
+      :host([type="popover"][_showHeader]) header,
+      :host([type="modal"][_showHeader]) .mdc-dialog__title {
+        height: 56px;
+      }
+
+      :host([type="modal"]) .mdc-dialog__title::before {
+        height: auto;
+      }
+
+      .heading {
+        flex: 1;
+        display: flex;
+        align-items: center;
       }
     `,
   ];
@@ -90,23 +120,72 @@ export class DwMenu extends DwCompositeDialog {
      * Though, if you would like to show it sometimes, e.g. when mobileMode=true.
      */
     showClose: { type: Boolean },
+
+    /**
+     * true when close button or heading is provided.
+     * use for set styles
+     */
+    _showHeader: { type: Boolean, reflect: true },
   };
 
   constructor() {
     super();
     this.type = "popover";
 
-    this.opened = false;
     this.mobileMode = false;
     this.keepAnchorVisible = false;
     this.placement = "top-start";
     this.showClose = false;
   }
 
+  // remove this custom getter/setter when `willUpdate` will be supported
+  set heading(value) {
+    let oldValue = this._heading;
+
+    if (oldValue === value) {
+      return;
+    }
+
+    this._showHeader = Boolean(value) || this.showClose;
+    this._heading = value;
+
+    this.requestUpdate("heading", oldValue);
+  }
+
+  get heading() {
+    return this._heading;
+  }
+
+  // remove this custom getter/setter when `willUpdate` will be supported
+  set showClose(value) {
+    let oldValue = this._showClose;
+
+    if (oldValue === value) {
+      return;
+    }
+
+    this._showHeader = Boolean(this.heading) || value;
+    this._showClose = value;
+
+    this.requestUpdate("showClose", oldValue);
+  }
+
+  get showClose() {
+    return this._showClose;
+  }
+
   connectedCallback() {
     this._setDialogConfig();
-
     super.connectedCallback();
+  }
+
+  get _headerTemplate() {
+    return html`
+      ${this.showClose
+        ? html`<dw-icon-button icon="close" @click=${() => this.close()}></dw-icon-button>`
+        : html``}
+      ${this.heading ? html`<div class="heading">${this.heading}</div>` : html``}
+    `;
   }
 
   get _contentTemplate() {

@@ -83,6 +83,12 @@ Key          | Type                | Description
 | ---------- | ------------------ | ------------------ | -----------
 | `action`   | `dw-list-item`     | `{name}`             | Fired when a menu item selected by User (keyboard or mouse interaction). `name` represents the action represented by the selected menu item.
 
+### CSS Custom Properties
+
+| Name                           | Default            | Description
+| ------------------------------ | ------------------ | --------------
+| `--dw-menu-header-padding`     | `0 0 0 16px`       | Padding of header area. 
+
 
 # Design Decisions
 - No property to configure animation. Animation style would be as suggested by the material standards.

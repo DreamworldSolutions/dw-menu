@@ -45,11 +45,6 @@ export class DwMenu extends DwCompositeDialog {
         height: auto;
       }
 
-      dw-icon-button {
-        width: max-content;
-        height: max-content;
-      }
-
       .heading {
         flex: 1;
         display: flex;
@@ -143,21 +138,49 @@ export class DwMenu extends DwCompositeDialog {
     this.showClose = false;
   }
 
+  set heading(value) {
+    let oldValue = this._heading;
+
+    if (oldValue === value) {
+      return;
+    }
+
+    this._showHeader = Boolean(value) || this.showClose;
+    this._heading = value;
+
+    this.requestUpdate("heading", oldValue);
+  }
+
+  get heading() {
+    return this._heading;
+  }
+
+  set showClose(value) {
+    let oldValue = this._showClose;
+
+    if (oldValue === value) {
+      return;
+    }
+
+    this._showHeader = Boolean(this.heading) || value;
+    this._showClose = value;
+
+    this.requestUpdate("showClose", oldValue);
+  }
+
+  get showClose() {
+    return this._showClose;
+  }
+
   connectedCallback() {
     this._setDialogConfig();
-    this._showHeader = Boolean(this.heading) || this.showClose;
-
     super.connectedCallback();
   }
 
   get _headerTemplate() {
     return html`
       ${this.showClose
-        ? html`<dw-icon-button
-            icon="close"
-            dismiss
-            @click=${(e) => console.log("close: invoked", e)}
-          ></dw-icon-button>`
+        ? html`<dw-icon-button icon="close" @click=${() => this.close()}></dw-icon-button>`
         : html``}
       ${this.heading ? html`<div class="heading">${this.heading}</div>` : html``}
     `;

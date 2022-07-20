@@ -39,8 +39,9 @@ export class DwMenu extends DwCompositeDialog {
       }
 
       dw-list-item:not([disabled])[danger] {
-        --mdc-theme-text-primary: var(--dw-menu-action-danger, #b00020);
-        --dw-icon-color: var(--dw-menu-action-danger, #b00020);
+        --mdc-theme-text-primary: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #B00020));
+        --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #B00020));
+        --mdc-theme-on-surface: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #B00020));
       }
 
       :host([type="popover"]) header,
@@ -208,9 +209,9 @@ export class DwMenu extends DwCompositeDialog {
     return html`
       ${repeat(this.actions, (action, index) => {
         return html`<dw-list-item
-          title1=${action.label}
-          leadingIcon=${action.icon}
-          hasLeadingIcon
+          .title1="${action.label}"
+          .leadingIcon="${action.icon}"
+          ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
           selectionMode="none"
           ?danger=${action.danger}
         ></dw-list-item>`;

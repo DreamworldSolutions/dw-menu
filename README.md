@@ -88,7 +88,8 @@ Key          | Type                | Description
 | Name                           | Default            | Description
 | ------------------------------ | ------------------ | --------------
 | `--dw-menu-header-padding`     | `0 0 0 16px`       | Padding of header area. 
-
+| `--dw-menu-content-padding`    | `0`                | Padding of content area. 
+| `--dw-menu-danger-action-color`      | `#B00020`          | Danger action color
 
 # Design Decisions
 - No property to configure animation. Animation style would be as suggested by the material standards.

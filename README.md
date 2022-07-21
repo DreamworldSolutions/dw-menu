@@ -22,7 +22,7 @@ Name              | Type                       | Default                 | Descr
 `disabledActions` | `Object`                   | `undefined`             | Specifies actions which are disabled. key = action name, value = Tooltip message to be shown for that action.
 `hiddenActions`   | `String[]`                    | `undefined`             | Actions specified here aren't visible (rendered) in the menu.
 `mobileMode`      | `boolean`                  | `false`                 | Displayed in bottom sheet in most of the cases. When menu items are overflowed Menu items are shown as Fit dialog.
-`anchor`          | `HTMLElement|null`        | `null`                  | Element to which this menu should be anchored to. Applicable only when `mobileMode=false`.
+`anchor`          | `HTMLElement`\|`null`        | `null`                  | Element to which this menu should be anchored to. Applicable only when `mobileMode=false`.
 `keepAnchorVisible` | `boolean`                 | `false`                 | By default, When menu is opened, it covers (hides) anchor element. Set it to `true`, to make it visible. Applicable only when `mobileMode=false`.
 `placement`       | `String`                  | `top-start`              | Possible values: `top-start`, `top-end`, `bottom-start` and `bottom-end`. Applicable only when `mobileMode=false`.
 `heading`         | `String`                    | `null`                | Set it if you would like to show a heading on the menu. By default no heading. |
@@ -81,15 +81,15 @@ Key          | Type                | Description
 
 | Event Name | Target             | Detail             | Description
 | ---------- | ------------------ | ------------------ | -----------
-| `action`   | `dw-list-item`     | `{name}`             | Fired when a menu item selected by User (keyboard or mouse interaction). `name` represents the action represented by the selected menu item.
+| `action`   | `dw-menu`          | `{name}`           | Fired when a menu item selected by User (keyboard or mouse interaction). `name` represents the action represented by the selected menu item.
 
 ### CSS Custom Properties
 
-| Name                           | Default            | Description
-| ------------------------------ | ------------------ | --------------
-| `--dw-menu-header-padding`     | `0 0 0 16px`       | Padding of header area. 
-| `--dw-menu-content-padding`    | `0`                | Padding of content area. 
-| `--dw-menu-danger-action-color`      | `#B00020`          | Danger action color
+| Name                             | Default            | Description
+| -------------------------------- | ------------------ | --------------
+| `--dw-menu-header-padding`       | `0 0 0 16px`       | Padding of header area. 
+| `--dw-menu-content-padding`      | `0`                | Padding of content area. 
+| `--dw-menu-danger-action-color`  | `#B00020`          | Danger action color
 
 # Design Decisions
 - No property to configure animation. Animation style would be as suggested by the material standards.

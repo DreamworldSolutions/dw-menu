@@ -929,10 +929,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@dreamworld/dw-dialog@^4.2.0-development.1":
-  version "4.2.0-development.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-4.2.0-development.1.tgz#b3290eacc0cab57a63c4c1b948db8fb34a132b04"
-  integrity sha512-ITBpnw3GkQO5xPtclMPUBBkMzE3SveyTULW+0gMQWoc1zie7qmimvANP/LPj59plzFV6HiRZooU9ssMlNS14RQ==
+"@dreamworld/dw-dialog@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-4.1.1.tgz#6d3a3bbe029e39a5eb3041e3266a33bf4c10ca1a"
+  integrity sha512-6Q1e9998SwuXbpxiPSsEKyQ33bRcaXB3654NvoyDJfhWx/HvIWYpARh+MrlKDM61mGjSBByPYBohn13oCd4Pew==
   dependencies:
     "@dreamworld/material-styles" "^1.1.0"
     "@dreamworld/pwa-helpers" "^1.11.1"

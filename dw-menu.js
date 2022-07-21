@@ -160,7 +160,7 @@ export class DwMenu extends DwCompositeDialog {
     this.hiddenActions = [];
   }
 
-  // remove this custom getter/setter when `willUpdate` will be supported
+  // Remove this custom getter/setter when `willUpdate` will be supported
   set heading(value) {
     let oldValue = this._heading;
 
@@ -178,7 +178,7 @@ export class DwMenu extends DwCompositeDialog {
     return this._heading;
   }
 
-  // remove this custom getter/setter when `willUpdate` will be supported
+  // Remove this custom getter/setter when `willUpdate` will be supported
   set showClose(value) {
     let oldValue = this._showClose;
 
@@ -212,21 +212,23 @@ export class DwMenu extends DwCompositeDialog {
 
   get _contentTemplate() {
     return html`
-      ${repeat(this.actions.filter((action) => this.hiddenActions.indexOf(action.name) === -1), 
-      (action, index) => {
+      ${repeat(this._getActions(), (action, index) => {
         return html`
-          ${this._isActionDisabled(action.name)
-            ? html`<span id=${action.name}>
-                <dw-list-item
-                  title1="${action.label}"
-                  leadingIcon="${action.icon}"
-                  ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
-                  selectionMode="none"
-                  ?danger="${action.danger}"
-                  ?disabled="${this._isActionDisabled(action.name)}"
-                  @click="${(e) => this._onAction(e, action)}"
-                ></dw-list-item>
-              </span>`
+          ${this._getDisabledActionTooltip(action.name)
+            ? html` <span id=${action.name}>
+                  <dw-list-item
+                    title1="${action.label}"
+                    leadingIcon="${action.icon}"
+                    ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
+                    selectionMode="none"
+                    ?danger="${action.danger}"
+                    ?disabled="${this._isActionDisabled(action.name)}"
+                    @click="${(e) => this._onAction(e, action)}"
+                  ></dw-list-item>
+                </span>
+                <dw-tooltip for=${action.name} placement="bottom"
+                  ><span>${this._getDisabledActionTooltip(action.name)}</span></dw-tooltip
+                >`
             : html`<dw-list-item
                 title1="${action.label}"
                 leadingIcon="${action.icon}"
@@ -236,20 +238,23 @@ export class DwMenu extends DwCompositeDialog {
                 ?disabled="${this._isActionDisabled(action.name)}"
                 @click="${(e) => this._onAction(e, action)}"
               ></dw-list-item>`}
-          ${this._getDisabledActionTooltip(action.name)
-            ? html`<dw-tooltip for=${action.name} placement="bottom"
-                ><span>${this._getDisabledActionTooltip(action.name)}</span></dw-tooltip
-              >`
-            : html``}
         `;
       })}
     `;
   }
 
   /**
-   * set dialog configuration based on `mobileMode`
+   * Computed actions and remove `hiddenActions`
+   * @returns {array} actions that actually present on a temporary surface.
+   */
+  _getActions() {
+    return this.actions.filter((action) => this.hiddenActions.indexOf(action.name) === -1);
+  }
+
+  /**
+   * Set dialog configuration based on `mobileMode`
    * If menu is in mobile mode dialog type is `modal` and placement is `bottom`
-   * otherwise placement value assigned to popoverPlacement
+   * Otherwise placement value assigned to popoverPlacement
    */
   _setDialogConfig() {
     if (this.mobileMode) {
@@ -266,26 +271,34 @@ export class DwMenu extends DwCompositeDialog {
    * @param {String} actionName name of the action
    * @returns Boolean
    */
-   _isActionDisabled(actionName) {
-    return !!(this.disabledActions && this.disabledActions.hasOwnProperty(actionName));
+  _isActionDisabled(actionName) {
+    return !!(this.disabledActions && this.disabledActions[actionName]);
   }
 
   /**
-   * to get disabled action tooltip text
+   * To get disabled action tooltip text
    *
    * @param {String} actionName name of the action
    * @returns String disabled action tooltip text
    */
   _getDisabledActionTooltip(actionName) {
-    return this.disabledActions && this.disabledActions[actionName]
+    if (
+      this.disabledActions &&
+      this.disabledActions[actionName] &&
+      typeof this.disabledActions[actionName] === "boolean"
+    ) {
+      return "";
+    }
+
+    return this.disabledActions && this.disabledActions[actionName];
   }
 
   /**
-   * trigger when action item is clicked
-   * close dialog when trigger
+   * Trigger when action item is clicked
+   * Close dialog when trigger
    *
    * @param {Event} e dispatch `action` event
-   * set actionName in detail
+   * Set actionName in detail
    */
   _onAction(e, action) {
     this.dispatchEvent(new CustomEvent("action", { detail: action.name }));

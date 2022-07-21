@@ -39,9 +39,12 @@ export class DwMenu extends DwCompositeDialog {
       }
 
       dw-list-item:not([disabled])[danger] {
-        --mdc-theme-text-primary: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #B00020));
-        --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #B00020));
-        --mdc-theme-on-surface: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #B00020));
+        --mdc-theme-text-primary: var(
+          --dw-menu-danger-action-color,
+          var(--mdc-theme-error, #b00020)
+        );
+        --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
+        --mdc-theme-on-surface: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
       }
 
       :host([type="popover"]) header,
@@ -211,11 +214,10 @@ export class DwMenu extends DwCompositeDialog {
         return html`<dw-list-item
           .title1="${action.label}"
           .leadingIcon="${action.icon}"
-          ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
+          ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
           selectionMode="none"
-          ?danger=${action.danger}
-          .actionName=${action.name}
-          @click=${this._onAction}
+          ?danger="${action.danger}"
+          @click="${(e) => this._onAction(e, action)}"
         ></dw-list-item>`;
       })}
     `;
@@ -239,12 +241,12 @@ export class DwMenu extends DwCompositeDialog {
   /**
    * trigger when action item is clicked
    * close dialog when trigger
-   * 
+   *
    * @param {Event} e dispatch `action` event
    * set actionName in detail
    */
-  _onAction(e) {
-    this.dispatchEvent(new CustomEvent('action', {detail: e.target.actionName}));
+  _onAction(e, action) {
+    this.dispatchEvent(new CustomEvent("action", { detail: action.name }));
     this.close();
   }
 }

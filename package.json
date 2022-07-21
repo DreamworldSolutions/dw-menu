@@ -24,7 +24,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@dreamworld/dw-dialog": "^4.2.0-development.1",
+    "@dreamworld/dw-dialog": "^4.1.1",
     "@dreamworld/dw-icon-button": "^2.4.0",
     "@dreamworld/dw-list-item": "^3.2.0",
     "@dreamworld/dw-tooltip": "^2.3.0",

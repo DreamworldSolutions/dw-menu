@@ -1,5 +1,6 @@
-import { css, html } from "lit-element";
-import { repeat } from "lit-html/directives/repeat";
+import {  html, css } from '@dreamworld/pwa-helpers/lit.js';
+import { repeat } from 'lit/directives/repeat.js';
+
 
 // View Element
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
@@ -24,7 +25,7 @@ import * as TypographyLiterals from "@dreamworld/material-styles/typography-lite
 
 export class DwMenu extends DwCompositeDialog {
   static styles = [
-    DwCompositeDialog.styles,
+   DwCompositeDialog.styles,
     css`
       :host {
         display: block;

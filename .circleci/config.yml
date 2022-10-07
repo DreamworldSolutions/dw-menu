@@ -1,12 +1,11 @@
 version: 2
 jobs:
-
   release-snapshot:
     docker:
-      - image: cimg/node:lts
+      - image: circleci/node:lts
     steps:
       - checkout
-      - run: yarn install --non-ineractive
+      - run: yarn install --frozen-lockfile --non-ineractive
       - run:
           name: Deploy
           command: |
@@ -15,15 +14,14 @@ jobs:
             npx semantic-release
   release:
     docker:
-      - image: cimg/node:lts
+      - image: circleci/node:lts
     steps:
       - checkout
-      - run: yarn install --non-ineractive
+      - run: yarn install --frozen-lockfile --non-ineractive
       - run: echo "Running release job"
       - run:
           name: Deploy
           command: npx semantic-release
-
 
 workflows:
   version: 2
@@ -38,7 +36,6 @@ workflows:
       - release:
           context: Dreamworld
           filters:
-              branches:
-                only:
-                  - main
-
+            branches:
+              only:
+                - master

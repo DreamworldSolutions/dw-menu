@@ -1,4 +1,4 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, html, css } from '@dreamworld/pwa-helpers/lit.js';
 import "../dw-menu.js";
 import "@dreamworld/dw-icon-button";
 

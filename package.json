@@ -24,13 +24,11 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@dreamworld/dw-dialog": "^4.1.1",
-    "@dreamworld/dw-icon-button": "^2.4.0",
-    "@dreamworld/dw-list-item": "^3.2.0",
-    "@dreamworld/dw-tooltip": "^2.3.0",
-    "@dreamworld/material-styles": "^2.3.0",
-    "lit": "^2.2.6",
-    "lit-html": "^1.1.1"
+    "@dreamworld/dw-dialog": "^5.0.0",
+    "@dreamworld/dw-icon-button": "^3.0.0",
+    "@dreamworld/dw-list-item": "^4.1.0",
+    "@dreamworld/dw-tooltip": "^3.0.0",
+    "@dreamworld/material-styles": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"
@@ -38,7 +36,7 @@
   "devDependencies": {
     "@open-wc/building-rollup": "^2.0.1",
     "@rollup/plugin-commonjs": "^22.0.0",
-    "@web/dev-server": "^0.1.31",
+    "@web/dev-server": "^0.1.35",
     "semantic-release": "^19.0.3"
   },
   "release": {

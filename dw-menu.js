@@ -1,5 +1,5 @@
-import { css, html } from "lit-element";
-import { repeat } from "lit-html/directives/repeat";
+import { html, css } from "@dreamworld/pwa-helpers/lit.js";
+import { repeat } from "lit/directives/repeat.js";
 
 // View Element
 import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
@@ -215,7 +215,8 @@ export class DwMenu extends DwCompositeDialog {
       ${repeat(this._getActions(), (action, index) => {
         return html`
           ${this._getDisabledActionTooltip(action.name)
-            ? html` <span id=${action.name}>
+            ? html`
+                <span id=${action.name}>
                   <dw-list-item
                     title1="${action.label}"
                     leadingIcon="${action.icon}"
@@ -226,9 +227,10 @@ export class DwMenu extends DwCompositeDialog {
                     @click="${(e) => this._onAction(e, action)}"
                   ></dw-list-item>
                 </span>
-                <dw-tooltip for=${action.name} placement="bottom"
-                  ><span>${this._getDisabledActionTooltip(action.name)}</span></dw-tooltip
-                >`
+                <dw-tooltip for=${action.name} placement="bottom">
+                  <span>${this._getDisabledActionTooltip(action.name)}</span>
+                </dw-tooltip>
+              `
             : html`<dw-list-item
                 title1="${action.label}"
                 leadingIcon="${action.icon}"

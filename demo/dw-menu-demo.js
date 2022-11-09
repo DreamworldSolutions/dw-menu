@@ -1,4 +1,4 @@
-import { LitElement, html, css } from '@dreamworld/pwa-helpers/lit.js';
+import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
 import "../dw-menu.js";
 import "@dreamworld/dw-icon-button";
 
@@ -28,7 +28,7 @@ const actions = [
 
 const disabledActions = {
   SHARE: "Share is disabled",
-  HOME: true
+  HOME: true,
 };
 
 const hiddenActions = [];
@@ -53,7 +53,6 @@ export class DwMenuDemo extends LitElement {
     return html`
       <dw-menu
         id="popover"
-        
         placement="bottom-end"
         .actions=${actions}
         .disabledActions=${disabledActions}
@@ -66,7 +65,6 @@ export class DwMenuDemo extends LitElement {
       <dw-menu
         id="bottom"
         .heading="${"Heading"}"
-        
         mobile-mode
         .actions=${actions}
         .disabledActions=${disabledActions}

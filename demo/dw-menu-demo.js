@@ -7,32 +7,32 @@ const actions = [
     name: "ADD",
     label: "Add",
     icon: "add",
-    iconFont: "FILLED"
+    iconFont: "FILLED",
   },
   {
     name: "SHARE",
     label: "Share",
     icon: "share",
-    iconFont: "OUTLINED"
+    iconFont: "OUTLINED",
   },
   {
     name: "HOME",
     label: "Home",
     icon: "home",
-    iconFont: "FILLED"
+    iconFont: "FILLED",
   },
   {
     name: "DELETE",
     label: "Delete",
     icon: "delete",
     danger: true,
-    iconFont: "OUTLINED"
+    iconFont: "OUTLINED",
   },
 ];
 
 const disabledActions = {
   SHARE: "Share is disabled",
-  HOME: true
+  HOME: true,
 };
 
 const hiddenActions = [];
@@ -57,7 +57,6 @@ export class DwMenuDemo extends LitElement {
     return html`
       <dw-menu
         id="popover"
-        
         placement="bottom-end"
         .actions=${actions}
         .disabledActions=${disabledActions}
@@ -70,7 +69,6 @@ export class DwMenuDemo extends LitElement {
       <dw-menu
         id="bottom"
         .heading="${"Heading"}"
-        
         mobile-mode
         .actions=${actions}
         .disabledActions=${disabledActions}

@@ -7,22 +7,26 @@ const actions = [
     name: "ADD",
     label: "Add",
     icon: "add",
+    iconFont: "FILLED"
   },
   {
     name: "SHARE",
     label: "Share",
     icon: "share",
+    iconFont: "OUTLINED"
   },
   {
     name: "HOME",
     label: "Home",
     icon: "home",
+    iconFont: "FILLED"
   },
   {
     name: "DELETE",
     label: "Delete",
     icon: "delete",
     danger: true,
+    iconFont: "OUTLINED"
   },
 ];
 

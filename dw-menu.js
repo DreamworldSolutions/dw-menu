@@ -220,6 +220,7 @@ export class DwMenu extends DwCompositeDialog {
                   <dw-list-item
                     title1="${action.label}"
                     leadingIcon="${action.icon}"
+                    leadingIconFont="${action.iconFont}"
                     ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
                     selectionMode="none"
                     ?danger="${action.danger}"
@@ -234,6 +235,7 @@ export class DwMenu extends DwCompositeDialog {
             : html`<dw-list-item
                 title1="${action.label}"
                 leadingIcon="${action.icon}"
+                leadingIconFont="${action.iconFont}"
                 ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
                 selectionMode="none"
                 ?danger="${action.danger}"

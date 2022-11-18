@@ -1,6 +1,7 @@
 import { LitElement, css, html } from "lit";
 import "../dw-menu.js";
 import "@dreamworld/dw-icon-button";
+import "../dw-menu-list-item.js";
 
 const actions = [
   {
@@ -14,6 +15,35 @@ const actions = [
     label: "Share",
     icon: "share",
     iconFont: "OUTLINED",
+    subAction: [
+      {
+        name: "pdf",
+        label: "PDF",
+        icon: "picture_as_pdf",
+        subAction: [
+          {
+            name: "DELETE",
+            label: "Delete",
+            icon: "delete",
+            danger: true,
+            iconFont: "OUTLINED",
+          },
+          {
+            name: "DELETE",
+            label: "Action 1",
+            icon: "add",
+            danger: true,
+            iconFont: "OUTLINED",
+          },
+        ],
+      },
+      {
+        name: "HOME",
+        label: "Home",
+        icon: "home",
+        iconFont: "FILLED",
+      },
+    ],
   },
   {
     name: "HOME",
@@ -21,18 +51,11 @@ const actions = [
     icon: "home",
     iconFont: "FILLED",
   },
-  {
-    name: "DELETE",
-    label: "Delete",
-    icon: "delete",
-    danger: true,
-    iconFont: "OUTLINED",
-  },
 ];
 
 const disabledActions = {
-  SHARE: "Share is disabled",
-  HOME: true,
+  ADD: "ADD is disabled",
+  DELETE: "HOME is disabled",
 };
 
 const hiddenActions = [];
@@ -78,6 +101,11 @@ export class DwMenuDemo extends LitElement {
       <label>Bottom Sheet</label>
       <dw-icon-button icon="more_vert" @click=${this._onBottom}></dw-icon-button>
     `;
+  }
+  _onExpend() {
+    let extenedEl = this.renderRoot.querySelector("#expandElement");
+    console.log(extenedEl);
+    extenedEl && extenedEl.toggle();
   }
 
   _onPopover(e) {

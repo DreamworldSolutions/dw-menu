@@ -6,6 +6,7 @@ import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js"
 import "@dreamworld/dw-list-item";
 import "@dreamworld/dw-icon-button";
 import "@dreamworld/dw-tooltip";
+import "./dw-menu-list-item.js";
 
 // Styles
 import * as TypographyLiterals from "@dreamworld/material-styles/typography-literals";
@@ -212,38 +213,17 @@ export class DwMenu extends DwCompositeDialog {
 
   get _contentTemplate() {
     return html`
-      ${repeat(this._getActions(), (action, index) => {
-        return html`
-          ${this._getDisabledActionTooltip(action.name)
-            ? html`
-                <span id=${action.name}>
-                  <dw-list-item
-                    title1="${action.label}"
-                    leadingIcon="${action.icon}"
-                    leadingIconFont="${action.iconFont}"
-                    ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
-                    selectionMode="none"
-                    ?danger="${action.danger}"
-                    ?disabled="${this._isActionDisabled(action.name)}"
-                    @click="${(e) => this._onAction(e, action)}"
-                  ></dw-list-item>
-                </span>
-                <dw-tooltip for=${action.name} placement="bottom">
-                  <span>${this._getDisabledActionTooltip(action.name)}</span>
-                </dw-tooltip>
-              `
-            : html`<dw-list-item
-                title1="${action.label}"
-                leadingIcon="${action.icon}"
-                leadingIconFont="${action.iconFont}"
-                ?hasLeadingIcon="${this.actions.some((e) => e.icon)}"
-                selectionMode="none"
-                ?danger="${action.danger}"
-                ?disabled="${this._isActionDisabled(action.name)}"
-                @click="${(e) => this._onAction(e, action)}"
-              ></dw-list-item>`}
-        `;
-      })}
+      ${repeat(
+        this._getActions(),
+        (action, index) =>
+          html`<dw-menu-list-item
+            .action=${action}
+            ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
+            ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
+            @actionClick=${(e) => this._onAction(e, action)}
+            .disabledActions=${this.disabledActions}
+          ></dw-menu-list-item>`
+      )}
     `;
   }
 
@@ -280,24 +260,6 @@ export class DwMenu extends DwCompositeDialog {
   }
 
   /**
-   * To get disabled action tooltip text
-   *
-   * @param {String} actionName name of the action
-   * @returns String disabled action tooltip text
-   */
-  _getDisabledActionTooltip(actionName) {
-    if (
-      this.disabledActions &&
-      this.disabledActions[actionName] &&
-      typeof this.disabledActions[actionName] === "boolean"
-    ) {
-      return "";
-    }
-
-    return this.disabledActions && this.disabledActions[actionName];
-  }
-
-  /**
    * Trigger when action item is clicked
    * Close dialog when trigger
    *
@@ -305,7 +267,9 @@ export class DwMenu extends DwCompositeDialog {
    * Set actionName in detail
    */
   _onAction(e, action) {
-    this.dispatchEvent(new CustomEvent("action", { detail: action.name }));
+    e.stopPropagation();
+    e.preventDefault();
+    this.dispatchEvent(new CustomEvent("action", { detail: e.detail.name }));
     this.close();
   }
 }

@@ -269,7 +269,7 @@ export class DwMenu extends DwCompositeDialog {
   _onAction(e, action) {
     e.stopPropagation();
     e.preventDefault();
-    this.dispatchEvent(new CustomEvent("action", { detail: action.name }));
+    this.dispatchEvent(new CustomEvent("action", { detail: e.detail }));
     this.close();
   }
 }

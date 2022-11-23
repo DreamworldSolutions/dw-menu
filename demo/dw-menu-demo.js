@@ -7,8 +7,7 @@ const actions = [
   {
     name: "ADD",
     label: "Add",
-    icon: "add",
-    iconFont: "FILLED",
+    icon: "add"
   },
   {
     name: "SHARE",

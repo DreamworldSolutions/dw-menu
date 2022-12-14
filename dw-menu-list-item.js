@@ -18,6 +18,10 @@ class DwMenuListItem extends LitElement {
           border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
           border-top: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
+
+        :host([divider]) {
+          border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+        }
       `,
     ];
   }
@@ -64,12 +68,25 @@ class DwMenuListItem extends LitElement {
         type: Boolean,
         reflect: true,
       },
+
+      divider: {
+        type: Boolean,
+        reflect: true,
+        attribute: "divider",
+      }
     };
   }
 
   constructor() {
     super();
     this.level = 1;
+  }
+
+  willUpdate(changedProperties) {
+    if(changedProperties.has("action")) {
+      this.action.divider ? this.divider = true : this.divider = false;
+      console.log(this.divider);
+    }
   }
 
   render() {

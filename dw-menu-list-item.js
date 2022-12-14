@@ -22,6 +22,22 @@ class DwMenuListItem extends LitElement {
         :host([divider]) {
           border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
+
+        dw-list-item:not([disabled]) {
+          --dw-icon-color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.6));
+        }
+
+        dw-list-item:not([disabled])[danger] {
+          --mdc-theme-text-primary: var(
+            --dw-menu-danger-action-color,
+            var(--mdc-theme-error, #b00020)
+          );
+          --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
+          --mdc-theme-on-surface: var(
+            --dw-menu-danger-action-color,
+            var(--mdc-theme-error, #b00020)
+          );
+        }
       `,
     ];
   }
@@ -73,7 +89,7 @@ class DwMenuListItem extends LitElement {
         type: Boolean,
         reflect: true,
         attribute: "divider",
-      }
+      },
     };
   }
 
@@ -83,26 +99,26 @@ class DwMenuListItem extends LitElement {
   }
 
   willUpdate(changedProperties) {
-    if(changedProperties.has("action")) {
-      this.action.divider ? this.divider = true : this.divider = false;
-      console.log(this.divider);
+    if (changedProperties.has("action")) {
+      this.action.divider ? (this.divider = true) : (this.divider = false);
     }
   }
 
   render() {
     let paddingLeft = this.level * 16 + "px";
+    console.log(this.action.danger);
     return html` ${this._getDisabledActionTooltip(this.action.name)
       ? html`<span id=${this.action.name}>
             <dw-list-item
               style="${styleMap({ "padding-left": paddingLeft })}"
               title1="${this.action.label}"
               leadingIcon="${this.action.icon}"
+              ?danger="${this.action.danger}"
               leadingIconFont="${this.action.iconFont}"
               trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
               ?hasTrailingIcon=${this._isSubActionAvailable}
               ?hasLeadingIcon="${this.hasLeadingIcon}"
               selectionMode="none"
-              ?danger="${this.action.danger}"
               ?disabled="${this.disabledActionTooltip}"
               @click="${(e) => this._onAction(e, this.action)}"
             ></dw-list-item
@@ -114,13 +130,13 @@ class DwMenuListItem extends LitElement {
           <dw-list-item
             style="${styleMap({ "padding-left": paddingLeft })}"
             title1="${this.action.label}"
+            ?danger="${this.action.danger}"
             leadingIcon="${this.action.icon}"
             leadingIconFont="${this.action.iconFont}"
             trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
             ?hasTrailingIcon=${this._isSubActionAvailable}
             ?hasLeadingIcon="${this.hasLeadingIcon}"
             selectionMode="none"
-            ?danger="${this.action.danger}"
             ?disabled="${this.disabledActionTooltip}"
             @click="${(e) => this._onAction(e, this.action)}"
           ></dw-list-item>

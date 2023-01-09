@@ -215,7 +215,7 @@ export class DwMenu extends DwCompositeDialog {
     return html`
       ${repeat(
         this._getActions(),
-        (action, index) =>
+        (action) =>
           html`<dw-menu-list-item
             .action=${action}
             ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
@@ -232,7 +232,7 @@ export class DwMenu extends DwCompositeDialog {
    * @returns {array} actions that actually present on a temporary surface.
    */
   _getActions() {
-    return this.actions.filter((action) => this.hiddenActions.indexOf(action.name) === -1);
+    return this.actions?.filter((action) => this.hiddenActions.indexOf(action.name) === -1);
   }
 
   /**
@@ -266,10 +266,10 @@ export class DwMenu extends DwCompositeDialog {
    * @param {Event} e dispatch `action` event
    * Set actionName in detail
    */
-  _onAction(e, action) {
+  _onAction(e) {
     e.stopPropagation();
     e.preventDefault();
-    this.dispatchEvent(new CustomEvent("action", { detail: e.detail.name }));
+    this.dispatchEvent(new CustomEvent("action", { detail: e.detail }));
     this.close();
   }
 }

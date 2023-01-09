@@ -1,4 +1,4 @@
-import { html, css, nothing } from "@dreamworld/pwa-helpers/lit.js";
+import { html, css } from "@dreamworld/pwa-helpers/lit.js";
 import { repeat } from "lit/directives/repeat.js";
 
 // View Element
@@ -213,19 +213,17 @@ export class DwMenu extends DwCompositeDialog {
 
   get _contentTemplate() {
     return html`
-      ${this.actions.length > 0
-        ? repeat(
-            this._getActions(),
-            (action) =>
-              html`<dw-menu-list-item
-                .action=${action}
-                ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
-                ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
-                @actionClick=${(e) => this._onAction(e, action)}
-                .disabledActions=${this.disabledActions}
-              ></dw-menu-list-item>`
-          )
-        : nothing}
+      ${repeat(
+        this._getActions(),
+        (action) =>
+          html`<dw-menu-list-item
+            .action=${action}
+            ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
+            ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
+            @actionClick=${(e) => this._onAction(e, action)}
+            .disabledActions=${this.disabledActions}
+          ></dw-menu-list-item>`
+      )}
     `;
   }
 
@@ -234,10 +232,7 @@ export class DwMenu extends DwCompositeDialog {
    * @returns {array} actions that actually present on a temporary surface.
    */
   _getActions() {
-    return (
-      this.actions &&
-      this.actions?.filter((action) => this.hiddenActions.indexOf(action.name) === -1)
-    );
+    return this.actions?.filter((action) => this.hiddenActions.indexOf(action.name) === -1);
   }
 
   /**

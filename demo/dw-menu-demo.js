@@ -7,7 +7,8 @@ const actions = [
   {
     name: "ADD",
     label: "Add",
-    icon: "add"
+    icon: "add",
+    iconFont: "FILLED",
   },
   {
     name: "SHARE",
@@ -49,6 +50,13 @@ const actions = [
     label: "Home",
     icon: "home",
     iconFont: "FILLED",
+  },
+  {
+    name: "DELETE",
+    label: "Delete",
+    icon: "delete",
+    danger: true,
+    iconFont: "OUTLINED",
   },
 ];
 

@@ -100,7 +100,7 @@ class DwMenuListItem extends LitElement {
 
   willUpdate(changedProperties) {
     if (changedProperties.has("action")) {
-      this.action.divider ? (this.divider = true) : (this.divider = false);
+      this.divider = this.action.divider;
     }
   }
 

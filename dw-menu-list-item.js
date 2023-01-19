@@ -18,6 +18,26 @@ class DwMenuListItem extends LitElement {
           border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
           border-top: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
+
+        :host([divider]) {
+          border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+        }
+
+        dw-list-item:not([disabled]) {
+          --dw-icon-color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.6));
+        }
+
+        dw-list-item:not([disabled])[danger] {
+          --mdc-theme-text-primary: var(
+            --dw-menu-danger-action-color,
+            var(--mdc-theme-error, #b00020)
+          );
+          --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
+          --mdc-theme-on-surface: var(
+            --dw-menu-danger-action-color,
+            var(--mdc-theme-error, #b00020)
+          );
+        }
       `,
     ];
   }
@@ -64,12 +84,24 @@ class DwMenuListItem extends LitElement {
         type: Boolean,
         reflect: true,
       },
+
+      divider: {
+        type: Boolean,
+        reflect: true,
+        attribute: "divider",
+      },
     };
   }
 
   constructor() {
     super();
     this.level = 1;
+  }
+
+  willUpdate(changedProperties) {
+    if (changedProperties.has("action")) {
+      this.divider = this.action.divider;
+    }
   }
 
   render() {
@@ -80,12 +112,12 @@ class DwMenuListItem extends LitElement {
               style="${styleMap({ "padding-left": paddingLeft })}"
               title1="${this.action.label}"
               leadingIcon="${this.action.icon}"
+              ?danger="${this.action.danger}"
               leadingIconFont="${this.action.iconFont}"
               trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
               ?hasTrailingIcon=${this._isSubActionAvailable}
               ?hasLeadingIcon="${this.hasLeadingIcon}"
               selectionMode="none"
-              ?danger="${this.action.danger}"
               ?disabled="${this.disabledActionTooltip}"
               @click="${(e) => this._onAction(e, this.action)}"
             ></dw-list-item
@@ -97,13 +129,13 @@ class DwMenuListItem extends LitElement {
           <dw-list-item
             style="${styleMap({ "padding-left": paddingLeft })}"
             title1="${this.action.label}"
+            ?danger="${this.action.danger}"
             leadingIcon="${this.action.icon}"
             leadingIconFont="${this.action.iconFont}"
             trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
             ?hasTrailingIcon=${this._isSubActionAvailable}
             ?hasLeadingIcon="${this.hasLeadingIcon}"
             selectionMode="none"
-            ?danger="${this.action.danger}"
             ?disabled="${this.disabledActionTooltip}"
             @click="${(e) => this._onAction(e, this.action)}"
           ></dw-list-item>

@@ -11,10 +11,17 @@ const actions = [
     iconFont: "FILLED",
   },
   {
+    name: "download",
+    label: "Download",
+    icon: "download",
+    iconFont: "OUTLINED"
+  },
+  {
     name: "SHARE",
     label: "Share",
     icon: "share",
     iconFont: "OUTLINED",
+    divider: true,
     subAction: [
       {
         name: "pdf",
@@ -46,10 +53,11 @@ const actions = [
     ],
   },
   {
-    name: "HOME",
-    label: "Home",
-    icon: "home",
-    iconFont: "FILLED",
+    name: "DELETE",
+    label: "DELETE",
+    icon: "delete",
+    danger: true,
+    iconFont: "OUTLINED",
   },
   {
     name: "DELETE",
@@ -61,8 +69,7 @@ const actions = [
 ];
 
 const disabledActions = {
-  ADD: "ADD is disabled",
-  DELETE: "HOME is disabled",
+  ADD: "ADD is disabled"
 };
 
 const hiddenActions = [];

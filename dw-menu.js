@@ -36,19 +36,6 @@ export class DwMenu extends DwCompositeDialog {
         padding: var(--dw-menu-content-padding, 0);
       }
 
-      dw-list-item:not([disabled]) {
-        --dw-icon-color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, 0.6));
-      }
-
-      dw-list-item:not([disabled])[danger] {
-        --mdc-theme-text-primary: var(
-          --dw-menu-danger-action-color,
-          var(--mdc-theme-error, #b00020)
-        );
-        --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
-        --mdc-theme-on-surface: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
-      }
-
       :host([type="popover"]) header,
       :host([type="modal"]) .mdc-dialog__title {
         max-height: 56px;

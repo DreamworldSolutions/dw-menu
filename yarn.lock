@@ -990,6 +990,15 @@
     "@dreamworld/pwa-helpers" "^1.13.1"
     tippy.js "^6.2.7"
 
+"@dreamworld/dw-tooltip@^3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-tooltip/-/dw-tooltip-3.1.1.tgz#ccf7488b79cc08c6edc9f752446a50ba0a3be9c8"
+  integrity sha512-PbOhFO51tjd3ASLRi9wEupA4ClMfXHjmIynhHjLK3xMsuPL97E1/YJP9Z5ZYUB9wu3Gr4PIvbUKgdPUSb8BfeA==
+  dependencies:
+    "@dreamworld/material-styles" "^3.0.0"
+    "@dreamworld/pwa-helpers" "^1.13.1"
+    tippy.js "^6.2.7"
+
 "@dreamworld/material-styles@^3.0.0", "@dreamworld/material-styles@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@dreamworld/material-styles/-/material-styles-3.1.0.tgz#2c1e40e14a94860448b72a3e0ff711ae107514c8"

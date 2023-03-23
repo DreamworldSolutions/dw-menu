@@ -1,7 +1,8 @@
-import { LitElement, html, css } from "@dreamworld/pwa-helpers/lit.js";
+import { LitElement, html, css, nothing } from "@dreamworld/pwa-helpers/lit.js";
 import "../dw-menu.js";
 import "@dreamworld/dw-icon-button";
 import "../dw-menu-list-item.js";
+import DeviceInfo from "@dreamworld/device-info";
 
 const actions = [
   {
@@ -90,48 +91,52 @@ export class DwMenuDemo extends LitElement {
     `,
   ];
 
+  static get properties() {
+    return {
+      _menuOpen: { type: Boolean}
+    }
+  }
+
   render() {
     return html`
-      <dw-menu
-        id="popover"
-        placement="bottom-end"
-        .actions=${actions}
-        .disabledActions=${disabledActions}
-        .hiddenActions=${hiddenActions}
-        @action=${(e) => console.log("demo", e.detail)}
-      ></dw-menu>
-      <label>Popover</label>
-      <dw-icon-button icon="more_vert" @click=${this._onPopover}></dw-icon-button>
+      <dw-icon-button id="triggerElement" icon="more_vert" @click=${this._onMenuOpen}></dw-icon-button>
 
-      <dw-menu
-        id="bottom"
-        .heading="${"Heading"}"
-        mobile-mode
-        .actions=${actions}
-        .disabledActions=${disabledActions}
-        .hiddenActions=${hiddenActions}
-        @action=${(e) => console.log("demo", e.detail)}
-      ></dw-menu>
-      <label>Bottom Sheet</label>
-      <dw-icon-button icon="more_vert" @click=${this._onBottom}></dw-icon-button>
+      ${this._renderMenu}
     `;
   }
-  _onExpend() {
-    let extenedEl = this.renderRoot.querySelector("#expandElement");
-    console.log(extenedEl);
-    extenedEl && extenedEl.toggle();
+
+  get _renderMenu() {
+    if (!this._menuOpen) {
+      return nothing;
+    }
+
+    return html`
+      <dw-menu
+        id="bottom"
+        .opened=${true}
+        .heading="${"Heading"}"
+        .actions=${actions}
+        .mobileMode=${DeviceInfo.info().layout === "small"}
+        placement="bottom-end"
+        .disabledActions=${disabledActions}
+        .hiddenActions=${hiddenActions}
+        .triggerElement=${this._getTriggerElement}
+        @dw-dialog-closed=${this._onMenuClose}
+        @action=${(e) => console.log("action", e.detail)}
+      ></dw-menu>
+    `
   }
 
-  _onPopover(e) {
-    let menuEl = this.renderRoot.querySelector("#popover");
-    let triggerEl = e.target;
-    menuEl && menuEl.open(triggerEl);
+  get _getTriggerElement() {
+    return this.renderRoot.querySelector('#triggerElement')
   }
 
-  _onBottom(e) {
-    let menuEl = this.renderRoot.querySelector("#bottom");
-    let triggerEl = e.target;
-    menuEl && menuEl.open(triggerEl);
+  _onMenuOpen(e) {
+    this._menuOpen = true;
+  }
+
+  _onMenuClose() {
+    this._menuOpen = false;
   }
 }
 

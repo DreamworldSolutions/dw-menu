@@ -135,6 +135,13 @@ export class DwMenu extends DwCompositeDialog {
      * use for set styles
      */
     _showHeader: { type: Boolean, reflect: true },
+
+    /**
+     * true when integrater don't want to close menu.
+     */
+    disableAutoClose: {
+      type: Boolean,
+    },
   };
 
   constructor() {
@@ -257,7 +264,9 @@ export class DwMenu extends DwCompositeDialog {
     e.stopPropagation();
     e.preventDefault();
     this.dispatchEvent(new CustomEvent("action", { detail: e.detail }));
-    this.close();
+    if (!this.disableAutoClose) {
+      this.close();
+    }
   }
 }
 

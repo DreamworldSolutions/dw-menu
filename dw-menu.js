@@ -137,7 +137,7 @@ export class DwMenu extends DwCompositeDialog {
     _showHeader: { type: Boolean, reflect: true },
 
     /**
-     * true when integrater don't want to close menu.
+     * Set true if the integrator doesn't want to close the menu on item click.
      */
     disableAutoClose: {
       type: Boolean,

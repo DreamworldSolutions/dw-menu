@@ -135,6 +135,13 @@ export class DwMenu extends DwCompositeDialog {
      * use for set styles
      */
     _showHeader: { type: Boolean, reflect: true },
+
+    /**
+     * Set true if the integrator doesn't want to close the menu on item click.
+     */
+    disableAutoClose: {
+      type: Boolean,
+    },
   };
 
   constructor() {
@@ -257,7 +264,9 @@ export class DwMenu extends DwCompositeDialog {
     e.stopPropagation();
     e.preventDefault();
     this.dispatchEvent(new CustomEvent("action", { detail: e.detail }));
-    this.close();
+    if (!this.disableAutoClose) {
+      this.close();
+    }
   }
 }
 

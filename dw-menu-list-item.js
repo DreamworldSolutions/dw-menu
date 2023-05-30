@@ -149,7 +149,7 @@ class DwMenuListItem extends LitElement {
     return html`
       <dw-collapsible>
         ${repeat(actions, (action) => {
-          if (this.hiddenActions.includes(action.name)) {
+          if (this.hiddenActions && this.hiddenActions.includes(action.name)) {
             return;
           }
           return html`<dw-menu-list-item

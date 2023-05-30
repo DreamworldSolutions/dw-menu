@@ -216,6 +216,7 @@ export class DwMenu extends DwCompositeDialog {
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
             @actionClick=${(e) => this._onAction(e, action)}
             .disabledActions=${this.disabledActions}
+            .hiddenActions=${this.hiddenActions}
           ></dw-menu-list-item>`
       )}
     `;

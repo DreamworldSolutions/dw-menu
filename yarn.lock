@@ -949,10 +949,10 @@
     "@dreamworld/pwa-helpers" "^1.16.1"
     lodash-es "^4.17.21"
 
-"@dreamworld/dw-dialog@^5.7.0-trigger-should-toggle-instead-of-always-open-in-popover-dialog.2":
-  version "5.7.0-trigger-should-toggle-instead-of-always-open-in-popover-dialog.2"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.7.0-trigger-should-toggle-instead-of-always-open-in-popover-dialog.2.tgz#5de78f0d16403f7ec201b0d59963cb48983b2915"
-  integrity sha512-AIkuOBk46lIZrGrS8l0R5bUZoaMGU0O2ghFx2TzaUs6rM6W7E/Fj/97BIxm3OJrc+n5nXKbSmxS3mGyazEi1KQ==
+"@dreamworld/dw-dialog@^5.7.0-trigger-should-toggle-instead-of-always-open-in-popover-dialog.3":
+  version "5.7.0-trigger-should-toggle-instead-of-always-open-in-popover-dialog.3"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.7.0-trigger-should-toggle-instead-of-always-open-in-popover-dialog.3.tgz#2fcfa8aabd9742a50d6dd60b65fc57a759a915f1"
+  integrity sha512-qUll4NnqR/yBd+J1ni90ya2K6FlDBBFK9ycdDm9+Flei51kmOgvFjf+VnmneDNq4zY9cGcNrBovMsjTsniVGXQ==
   dependencies:
     "@dreamworld/material-styles" "^3.1.0"
     "@dreamworld/pwa-helpers" "^1.14.0"

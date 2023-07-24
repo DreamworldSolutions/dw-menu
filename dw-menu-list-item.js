@@ -66,6 +66,12 @@ class DwMenuListItem extends LitElement {
         reflect: true,
       },
 
+      /**
+       * Input property.
+       * set to true when item has leading Symbol.
+       */
+      leadingIconSymbol: { type: Boolean , reflect: true },
+
       _opened: {
         type: Boolean,
         reflect: true,
@@ -119,6 +125,7 @@ class DwMenuListItem extends LitElement {
               trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
               ?hasTrailingIcon=${this._isSubActionAvailable}
               ?hasLeadingIcon="${this.hasLeadingIcon}"
+              ?leadingIconSymbol="${this.leadingIconSymbol}"
               selectionMode="none"
               ?disabled="${this.disabledActionTooltip}"
               @click="${(e) => this._onAction(e, this.action)}"
@@ -137,6 +144,7 @@ class DwMenuListItem extends LitElement {
             trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
             ?hasTrailingIcon=${this._isSubActionAvailable}
             ?hasLeadingIcon="${this.hasLeadingIcon}"
+            ?leadingIconSymbol="${this.leadingIconSymbol}"
             selectionMode="none"
             ?disabled="${this.disabledActionTooltip}"
             @click="${(e) => this._onAction(e, this.action)}"

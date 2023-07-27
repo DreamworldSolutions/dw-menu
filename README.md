@@ -65,14 +65,15 @@ npm install @dreamworld/dw-menu
 
 #### Object
 
-| Key          | Type      | Description                                                                                                                              |
-| ------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`       | `String`  | name of the action. It's available in `action` event detail.                                                                             |
-| `label`      | `String`  | label of the action                                                                                                                      |
-| `icon`       | `String`  | Name of the icon to show as a leading icon                                                                                               |
-| `danger`     | `Boolean` | Shows action in danger mode. e.g. For delete action, you might need it.                                                                  |
-| `type`       | `String`  | Type of the action. Applicable only when action has `subAction`. possible values: `collapsible`, `submenu`. default value: `collapsible` |
-| `subActions` | `Array[]` | Sub Actions of the current action. Used when a group of actions comes under any same parent item.                                        |
+| Key                | Type      | Description                                                                                                                                                                                                                                                                            |
+| ------------------ | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`             | `String`  | name of the action. It's available in `action` event detail.                                                                                                                                                                                                                           |
+| `label`            | `String`  | label of the action                                                                                                                                                                                                                                                                    |
+| `icon`             | `String`  | Name of the icon to show as a leading icon                                                                                                                                                                                                                                             |
+| `danger`           | `Boolean` | Shows action in danger mode. e.g. For delete action, you might need it.                                                                                                                                                                                                                |
+| `type`             | `String`  | Type of the action. Applicable only when action has `subAction`. possible values: `collapsible`, `submenu`. default value: `collapsible`                                                                                                                                               |
+| `subActions`       | `Array[]` | Sub Actions of the current action. Used when a group of actions comes under any same parent item.                                                                                                                                                                                      |
+| `disableAutoClose` | `Boolean` | To prevent the `close` event from triggering on menu item clicks, it has been disabled. <br> The `close` event will now be dispatched exclusively when the close icon is clicked, when a user clicks outside the menu, or when the menu is closed through any other appropriate means. |
 
 #### Example
 

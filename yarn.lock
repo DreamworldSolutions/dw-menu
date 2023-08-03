@@ -949,10 +949,10 @@
     "@dreamworld/pwa-helpers" "^1.16.1"
     lodash-es "^4.17.21"
 
-"@dreamworld/dw-dialog@^5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.6.0.tgz#f1274e04abf80e2ec0e21510ab5fe9d3249b2a94"
-  integrity sha512-mbS4WwTbMw7acuweEPOt3cDmajC5dod6DSwWQCT9SGs6p38QqeoTVbK0XsQcjCWbGoZ6VFjTRlcIqLtScyUncA==
+"@dreamworld/dw-dialog@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-dialog/-/dw-dialog-5.7.0.tgz#ea9d54cb39bdce2f1f91cae9cfb643e328106040"
+  integrity sha512-ICQo5oYOnoirPhUBOsg4N0BdDo8wTpZoDA294hi/Yd2zg6bzbUVpnkygJEqwyRKyl9r0KYVJ+PSU3qD3TG9tmw==
   dependencies:
     "@dreamworld/material-styles" "^3.1.0"
     "@dreamworld/pwa-helpers" "^1.14.0"

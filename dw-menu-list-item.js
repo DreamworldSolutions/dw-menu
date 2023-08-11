@@ -114,6 +114,10 @@ class DwMenuListItem extends LitElement {
 
   render() {
     let paddingLeft = this.level * 16 + "px";
+    if(!this.action.icon && this.action.hasLeadingIconSpace) {
+      paddingLeft = Number(paddingLeft.replace("px", "")) + 40 + "px";
+    }
+    
     return html` ${this._getDisabledActionTooltip(this.action.name)
       ? html`<span id=${this.action.name}>
             <dw-list-item

@@ -27,7 +27,7 @@ const actions = [
       {
         name: "pdf",
         label: "PDF",
-        icon: "picture_as_pdf",
+        hasLeadingIconSpace: true,
         subAction: [
           {
             name: "DELETE",
@@ -48,7 +48,7 @@ const actions = [
       {
         name: "HOME",
         label: "Home",
-        icon: "home",
+        hasLeadingIconSpace: true,
         iconFont: "FILLED",
       },
     ],

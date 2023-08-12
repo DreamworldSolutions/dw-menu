@@ -8,13 +8,11 @@ const actions = [
   {
     name: "ADD",
     label: "Add",
-    icon: "add",
     iconFont: "FILLED",
   },
   {
     name: "download",
     label: "Download",
-    icon: "download",
     iconFont: "OUTLINED"
   },
   {
@@ -32,15 +30,15 @@ const actions = [
           {
             name: "DELETE",
             label: "Delete",
-            icon: "delete",
+            icon: "share",
             danger: true,
             iconFont: "OUTLINED",
           },
           {
             name: "DELETE",
             label: "Action 1",
-            icon: "add",
             danger: true,
+            hasLeadingIconSpace: true,
             iconFont: "OUTLINED",
           },
         ],
@@ -48,7 +46,6 @@ const actions = [
       {
         name: "HOME",
         label: "Home",
-        hasLeadingIconSpace: true,
         iconFont: "FILLED",
       },
     ],

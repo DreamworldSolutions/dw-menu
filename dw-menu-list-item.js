@@ -114,6 +114,7 @@ class DwMenuListItem extends LitElement {
 
   render() {
     let paddingLeft = this.level * 16 + "px";
+    
     return html` ${this._getDisabledActionTooltip(this.action.name)
       ? html`<span id=${this.action.name}>
             <dw-list-item
@@ -163,7 +164,7 @@ class DwMenuListItem extends LitElement {
           return html`<dw-menu-list-item
             .action=${action}
             .level=${this.level + 1}
-            ?hasLeadingIcon=${this.action.subAction.some((e) => e.icon)}
+            ?hasLeadingIcon=${this.action.subAction.some((e) => e.icon || e.hasLeadingIconSpace)}
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
             .disabledActions=${this.disabledActions}
           ></dw-menu-list-item>`;

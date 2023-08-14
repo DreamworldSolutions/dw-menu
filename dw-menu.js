@@ -212,7 +212,7 @@ export class DwMenu extends DwCompositeDialog {
         (action) =>
           html`<dw-menu-list-item
             .action=${action}
-            ?hasLeadingIcon=${this.actions.some((e) => e.icon)}
+            ?hasLeadingIcon=${this.actions.some((e) => e.icon || e.hasLeadingIconSpace)}
             ?leadingIconSymbol=${action.leadingIconSymbol}
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
             @actionClick=${(e) => this._onAction(e, action)}

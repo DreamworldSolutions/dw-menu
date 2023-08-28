@@ -1,73 +1,73 @@
-import { LitElement, html, css, nothing } from "@dreamworld/pwa-helpers/lit.js";
-import "../dw-menu.js";
-import "@dreamworld/dw-icon-button";
-import "../dw-menu-list-item.js";
-import DeviceInfo from "@dreamworld/device-info";
+import DeviceInfo from '@dreamworld/device-info';
+import '@dreamworld/dw-icon-button';
+import { LitElement, css, html, nothing } from '@dreamworld/pwa-helpers/lit.js';
+import '../dw-menu-list-item.js';
+import '../dw-menu.js';
 
 const actions = [
   {
-    name: "ADD",
-    label: "Add",
-    iconFont: "FILLED",
+    name: 'ADD',
+    label: 'Add',
+    iconFont: 'FILLED',
   },
   {
-    name: "download",
-    label: "Download",
-    iconFont: "OUTLINED"
+    name: 'download',
+    label: 'Download',
+    iconFont: 'OUTLINED',
   },
   {
-    name: "SHARE",
-    label: "Share",
-    icon: "share",
-    iconFont: "OUTLINED",
+    name: 'SHARE',
+    label: 'Share',
+    icon: 'share',
+    iconFont: 'OUTLINED',
     divider: true,
     subAction: [
       {
-        name: "pdf",
-        label: "PDF",
+        name: 'pdf',
+        label: 'PDF',
         hasLeadingIconSpace: true,
         subAction: [
           {
-            name: "DELETE",
-            label: "Delete",
-            icon: "share",
+            name: 'DELETE',
+            label: 'Delete',
+            icon: 'share',
             danger: true,
-            iconFont: "OUTLINED",
+            iconFont: 'OUTLINED',
           },
           {
-            name: "DELETE",
-            label: "Action 1",
+            name: 'DELETE',
+            label: 'Action 1',
             danger: true,
             hasLeadingIconSpace: true,
-            iconFont: "OUTLINED",
+            iconFont: 'OUTLINED',
           },
         ],
       },
       {
-        name: "HOME",
-        label: "Home",
-        iconFont: "FILLED",
+        name: 'HOME',
+        label: 'Home',
+        iconFont: 'FILLED',
       },
     ],
   },
   {
-    name: "DELETE",
-    label: "DELETE",
-    icon: "delete",
+    name: 'DELETE',
+    label: 'DELETE',
+    icon: 'delete',
     danger: true,
-    iconFont: "OUTLINED",
+    iconFont: 'OUTLINED',
   },
   {
-    name: "DELETE",
-    label: "Delete",
-    icon: "delete",
+    name: 'DELETE',
+    label: 'Delete',
+    icon: 'delete',
     danger: true,
-    iconFont: "OUTLINED",
+    iconFont: 'OUTLINED',
   },
 ];
 
 const disabledActions = {
-  ADD: "ADD is disabled"
+  ADD: 'ADD is disabled',
 };
 
 const hiddenActions = [];
@@ -90,8 +90,8 @@ export class DwMenuDemo extends LitElement {
 
   static get properties() {
     return {
-      _menuOpen: { type: Boolean}
-    }
+      _menuOpen: { type: Boolean },
+    };
   }
 
   render() {
@@ -111,21 +111,21 @@ export class DwMenuDemo extends LitElement {
       <dw-menu
         id="bottom"
         .opened=${true}
-        .heading="${"Heading"}"
+        .heading="${'Heading'}"
         .actions=${actions}
-        .mobileMode=${DeviceInfo.info().layout === "small"}
+        .mobileMode=${DeviceInfo.info().layout === 'small'}
         placement="bottom-end"
         .disabledActions=${disabledActions}
         .hiddenActions=${hiddenActions}
         .triggerElement=${this._getTriggerElement}
         @dw-dialog-closed=${this._onMenuClose}
-        @action=${(e) => console.log("action", e.detail)}
+        @action=${e => console.log('action', e.detail)}
       ></dw-menu>
-    `
+    `;
   }
 
   get _getTriggerElement() {
-    return this.renderRoot.querySelector('#triggerElement')
+    return this.renderRoot.querySelector('#triggerElement');
   }
 
   _onMenuOpen(e) {
@@ -137,4 +137,4 @@ export class DwMenuDemo extends LitElement {
   }
 }
 
-customElements.define("dw-menu-demo", DwMenuDemo);
+customElements.define('dw-menu-demo', DwMenuDemo);

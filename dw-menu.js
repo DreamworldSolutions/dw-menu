@@ -1,15 +1,15 @@
-import { html, css } from "@dreamworld/pwa-helpers/lit.js";
-import { repeat } from "lit/directives/repeat.js";
+import { css, html } from '@dreamworld/pwa-helpers/lit.js';
+import { repeat } from 'lit/directives/repeat.js';
 
 // View Element
-import { DwCompositeDialog } from "@dreamworld/dw-dialog/dw-composite-dialog.js";
-import "@dreamworld/dw-list-item";
-import "@dreamworld/dw-icon-button";
-import "@dreamworld/dw-tooltip";
-import "./dw-menu-list-item.js";
+import { DwCompositeDialog } from '@dreamworld/dw-dialog/dw-composite-dialog.js';
+import '@dreamworld/dw-icon-button';
+import '@dreamworld/dw-list-item';
+import '@dreamworld/dw-tooltip';
+import './dw-menu-list-item.js';
 
 // Styles
-import * as TypographyLiterals from "@dreamworld/material-styles/typography-literals";
+import * as TypographyLiterals from '@dreamworld/material-styles/typography-literals';
 
 /**
  * # <dw-menu>
@@ -22,7 +22,6 @@ import * as TypographyLiterals from "@dreamworld/material-styles/typography-lite
  * ## Behaviour
  * -
  */
-
 export class DwMenu extends DwCompositeDialog {
   static styles = [
     DwCompositeDialog.styles,
@@ -32,12 +31,12 @@ export class DwMenu extends DwCompositeDialog {
         --dw-dialog-content-padding: 0;
       }
 
-      :host([type="popover"]) .dialog__content {
+      :host([type='popover']) .dialog__content {
         padding: var(--dw-menu-content-padding, 0);
       }
 
-      :host([type="popover"]) header,
-      :host([type="modal"]) .mdc-dialog__title {
+      :host([type='popover']) header,
+      :host([type='modal']) .mdc-dialog__title {
         max-height: 56px;
         display: flex;
         flex-direction: row-reverse;
@@ -45,12 +44,12 @@ export class DwMenu extends DwCompositeDialog {
         ${TypographyLiterals.headline6};
       }
 
-      :host([type="popover"][_showHeader]) header,
-      :host([type="modal"][_showHeader]) .mdc-dialog__title {
+      :host([type='popover'][_showHeader]) header,
+      :host([type='modal'][_showHeader]) .mdc-dialog__title {
         height: 56px;
       }
 
-      :host([type="modal"]) .mdc-dialog__title::before {
+      :host([type='modal']) .mdc-dialog__title::before {
         height: auto;
       }
 
@@ -96,7 +95,7 @@ export class DwMenu extends DwCompositeDialog {
     mobileMode: {
       type: Boolean,
       reflect: true,
-      attribute: "mobile-mode",
+      attribute: 'mobile-mode',
     },
 
     /**
@@ -146,11 +145,11 @@ export class DwMenu extends DwCompositeDialog {
 
   constructor() {
     super();
-    this.type = "popover";
+    this.type = 'popover';
 
     this.mobileMode = false;
     this.keepAnchorVisible = false;
-    this.placement = "top-start";
+    this.placement = 'top-start';
     this.showClose = false;
     this.hiddenActions = [];
   }
@@ -166,7 +165,7 @@ export class DwMenu extends DwCompositeDialog {
     this._showHeader = Boolean(value) || this.showClose;
     this._heading = value;
 
-    this.requestUpdate("heading", oldValue);
+    this.requestUpdate('heading', oldValue);
   }
 
   get heading() {
@@ -184,7 +183,7 @@ export class DwMenu extends DwCompositeDialog {
     this._showHeader = Boolean(this.heading) || value;
     this._showClose = value;
 
-    this.requestUpdate("showClose", oldValue);
+    this.requestUpdate('showClose', oldValue);
   }
 
   get showClose() {
@@ -198,9 +197,7 @@ export class DwMenu extends DwCompositeDialog {
 
   get _headerTemplate() {
     return html`
-      ${this.showClose
-        ? html`<dw-icon-button icon="close" @click=${() => this.close()}></dw-icon-button>`
-        : html``}
+      ${this.showClose ? html`<dw-icon-button icon="close" @click=${() => this.close()}></dw-icon-button>` : html``}
       ${this.heading ? html`<div class="heading">${this.heading}</div>` : html``}
     `;
   }
@@ -209,13 +206,13 @@ export class DwMenu extends DwCompositeDialog {
     return html`
       ${repeat(
         this._getActions(),
-        (action) =>
+        action =>
           html`<dw-menu-list-item
             .action=${action}
-            ?hasLeadingIcon=${this.actions.some((e) => e.icon || e.hasLeadingIconSpace)}
+            ?hasLeadingIcon=${this.actions.some(e => e.icon || e.hasLeadingIconSpace)}
             ?leadingIconSymbol=${action.leadingIconSymbol}
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
-            @actionClick=${(e) => this._onAction(e, action)}
+            @actionClick=${e => this._onAction(e, action)}
             .disabledActions=${this.disabledActions}
             .hiddenActions=${this.hiddenActions}
           ></dw-menu-list-item>`
@@ -228,7 +225,7 @@ export class DwMenu extends DwCompositeDialog {
    * @returns {array} actions that actually present on a temporary surface.
    */
   _getActions() {
-    return this.actions?.filter((action) => this.hiddenActions.indexOf(action.name) === -1);
+    return this.actions?.filter(action => this.hiddenActions.indexOf(action.name) === -1);
   }
 
   /**
@@ -238,8 +235,8 @@ export class DwMenu extends DwCompositeDialog {
    */
   _setDialogConfig() {
     if (this.mobileMode) {
-      this.type = "modal";
-      this.placement = "bottom";
+      this.type = 'modal';
+      this.placement = 'bottom';
       return;
     }
 
@@ -265,11 +262,11 @@ export class DwMenu extends DwCompositeDialog {
   _onAction(e) {
     e.stopPropagation();
     e.preventDefault();
-    this.dispatchEvent(new CustomEvent("action", { detail: e.detail }));
+    this.dispatchEvent(new CustomEvent('action', { detail: e.detail }));
     if (!this.disableAutoClose) {
       this.close();
     }
   }
 }
 
-window.customElements.define("dw-menu", DwMenu);
+window.customElements.define('dw-menu', DwMenu);

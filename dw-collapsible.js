@@ -1,3 +1,5 @@
+import { LitElement, html, css } from 'lit';
+
 /**
  * This element is used to show and hide content.
  *
@@ -10,9 +12,6 @@
  * ## Methods
  *  - collapsetToggle() - Used to toggle collapse element's content.
  */
-
-import { LitElement, html, css } from "lit";
-
 export class DwCollapsible extends LitElement {
   static styles = css`
     :host .collapsible {
@@ -54,17 +53,17 @@ export class DwCollapsible extends LitElement {
   }
 
   willUpdate(changedProperties) {
-    if (changedProperties.has("opened")) {
-      let collapsibleEl = this.shadowRoot.querySelector(".collapsible");
+    if (changedProperties.has('opened')) {
+      let collapsibleEl = this.shadowRoot.querySelector('.collapsible');
       if (collapsibleEl) {
-        collapsibleEl.style.height = collapsibleEl.scrollHeight + "px";
+        collapsibleEl.style.height = collapsibleEl.scrollHeight + 'px';
         if (this.opened) {
           setTimeout(() => {
-            collapsibleEl.style.height = "auto";
+            collapsibleEl.style.height = 'auto';
           }, 500);
         } else {
           setTimeout(() => {
-            collapsibleEl.style.height = "0px";
+            collapsibleEl.style.height = '0px';
           });
         }
       }
@@ -72,4 +71,4 @@ export class DwCollapsible extends LitElement {
   }
 }
 
-customElements.define("dw-collapsible", DwCollapsible);
+customElements.define('dw-collapsible', DwCollapsible);

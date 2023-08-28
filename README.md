@@ -21,12 +21,7 @@ npm install @dreamworld/dw-menu
 <img src="images/popover-menu.png" width="300px">
 
 ```html
-<dw-menu
-  .actions="${actions}"
-  .disabledActions="${disabledActions}"
-  .hiddenActions="${hiddenActions}"
-  @action="${handler}"
-></dw-menu>
+<dw-menu .actions="${actions}" .disabledActions="${disabledActions}" .hiddenActions="${hiddenActions}" @action="${handler}"></dw-menu>
 ```
 
 ### Mobile Mode
@@ -66,16 +61,16 @@ npm install @dreamworld/dw-menu
 
 #### Object
 
-| Key          | Type      | Description                                                                                                                              |
-| ------------ | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`       | `String`  | name of the action. It's available in `action` event detail.                                                                             |
-| `label`      | `String`  | label of the action                                                                                                                      |
-| `icon`       | `String`  | Name of the icon to show as a leading icon                                                                                               |
-| `danger`     | `Boolean` | Shows action in danger mode. e.g. For delete action, you might need it.                                                                  |
-| `type`       | `String`  | Type of the action. Applicable only when action has `subAction`. possible values: `collapsible`, `submenu`. default value: `collapsible` |
-| `subActions` | `Array[]` | Sub Actions of the current action. Used when a group of actions comes under any same parent item.                                        |
-| `divider` | `Boolean` | Set border bottom of the list item.                                        |
-| `hasLeadingIconSpace` | `Boolean` | Leave space for the icon (40px) in the list item. only applicable when an `icon` value has not been set.                                       |
+| Key                   | Type      | Description                                                                                                                              |
+| --------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`                | `String`  | name of the action. It's available in `action` event detail.                                                                             |
+| `label`               | `String`  | label of the action                                                                                                                      |
+| `icon`                | `String`  | Name of the icon to show as a leading icon                                                                                               |
+| `danger`              | `Boolean` | Shows action in danger mode. e.g. For delete action, you might need it.                                                                  |
+| `type`                | `String`  | Type of the action. Applicable only when action has `subAction`. possible values: `collapsible`, `submenu`. default value: `collapsible` |
+| `subActions`          | `Array[]` | Sub Actions of the current action. Used when a group of actions comes under any same parent item.                                        |
+| `divider`             | `Boolean` | Set border bottom of the list item.                                                                                                      |
+| `hasLeadingIconSpace` | `Boolean` | Leave space for the icon (40px) in the list item. only applicable when an `icon` value has not been set.                                 |
 
 #### Example
 
@@ -115,23 +110,24 @@ npm install @dreamworld/dw-menu
 ```
 
 #### Sub Actions Without Leading Icon
+
 [{
-  name: "ADD",
-  label: "Add",
-  icon: "add",
-  subAction: [
-    {name: "TOP", label: "Move to Top", hasLeadingIconSpace: true},
-    {name: "BOTTOM", label: "Move to Bottom", hasLeadingIconSpace: true}
-  ]
+name: "ADD",
+label: "Add",
+icon: "add",
+subAction: [
+{name: "TOP", label: "Move to Top", hasLeadingIconSpace: true},
+{name: "BOTTOM", label: "Move to Bottom", hasLeadingIconSpace: true}
+]
 },
 {
-  name: "ADD",
-  label: "Add",
-  hasLeadingIconSpace: true
-  subAction: [
-    {name: "TOP", label: "Move to Top", hasLeadingIconSpace: true},
-    {name: "BOTTOM", label: "Move to Bottom", hasLeadingIconSpace: true}
-  ]
+name: "ADD",
+label: "Add",
+hasLeadingIconSpace: true
+subAction: [
+{name: "TOP", label: "Move to Top", hasLeadingIconSpace: true},
+{name: "BOTTOM", label: "Move to Bottom", hasLeadingIconSpace: true}
+]
 }]
 
 ### disabledActions
@@ -156,11 +152,12 @@ npm install @dreamworld/dw-menu
 
 ### CSS Custom Properties
 
-| Name                            | Default      | Description              |
-| ------------------------------- | ------------ | ------------------------ |
-| `--dw-menu-header-padding`      | `0 0 0 16px` | Padding of header area.  |
-| `--dw-menu-content-padding`     | `0`          | Padding of content area. |
-| `--dw-menu-danger-action-color` | `#B00020`    | Danger action color      |
+| Name                                | Default             | Description                             |
+| ----------------------------------- | ------------------- | --------------------------------------- |
+| `--dw-menu-header-padding`          | `0 0 0 16px`        | Padding of header area.                 |
+| `--dw-menu-content-padding`         | `0`                 | Padding of content area.                |
+| `--dw-menu-danger-action-color`     | `#B00020`           | Danger action color                     |
+| `--dw-menu-list-item-divider-color` | rgba(0, 0, 0, 0.12) | Divider color for collapsible list item |
 
 # Design Decisions
 

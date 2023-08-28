@@ -15,12 +15,12 @@ class DwMenuListItem extends LitElement {
         }
 
         :host([opened]) {
-          border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
-          border-top: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+          border-bottom: 1px solid var(--dw-menu-list-item-divider-color, --mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+          border-top: 1px solid var(--dw-menu-list-item-divider-color, --mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
 
         :host([divider]) {
-          border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+          border-bottom: 1px solid var(--dw-menu-list-item-divider-color, --mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
 
         dw-list-item:not([disabled]) {

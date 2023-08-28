@@ -1,10 +1,10 @@
-import { LitElement, html, css } from "lit";
-import { styleMap } from "lit/directives/style-map.js";
-import { repeat } from "lit/directives/repeat.js";
+import { LitElement, html, css } from 'lit';
+import { styleMap } from 'lit/directives/style-map.js';
+import { repeat } from 'lit/directives/repeat.js';
 
-import "@dreamworld/dw-list-item";
-import "@dreamworld/dw-tooltip";
-import "./dw-collapsible.js";
+import '@dreamworld/dw-list-item';
+import '@dreamworld/dw-tooltip';
+import './dw-collapsible.js';
 
 class DwMenuListItem extends LitElement {
   static get styles() {
@@ -15,12 +15,12 @@ class DwMenuListItem extends LitElement {
         }
 
         :host([opened]) {
-          border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
-          border-top: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+          border-bottom: 1px solid var(--dw-menu-list-item-divider-color, --mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+          border-top: 1px solid var(--dw-menu-list-item-divider-color, --mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
 
         :host([divider]) {
-          border-bottom: 1px solid var(--mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
+          border-bottom: 1px solid var(--dw-menu-list-item-divider-color, --mdc-theme-divider-color, rgba(0, 0, 0, 0.12));
         }
 
         dw-list-item:not([disabled]) {
@@ -28,15 +28,9 @@ class DwMenuListItem extends LitElement {
         }
 
         dw-list-item:not([disabled])[danger] {
-          --mdc-theme-text-primary: var(
-            --dw-menu-danger-action-color,
-            var(--mdc-theme-error, #b00020)
-          );
+          --mdc-theme-text-primary: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
           --dw-icon-color: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
-          --mdc-theme-on-surface: var(
-            --dw-menu-danger-action-color,
-            var(--mdc-theme-error, #b00020)
-          );
+          --mdc-theme-on-surface: var(--dw-menu-danger-action-color, var(--mdc-theme-error, #b00020));
         }
       `,
     ];
@@ -61,43 +55,27 @@ class DwMenuListItem extends LitElement {
        * Input Property
        * Whether item has leading icon or not
        */
-      hasLeadingIcon: {
-        type: Boolean,
-        reflect: true,
-      },
+      hasLeadingIcon: { type: Boolean, reflect: true },
 
       /**
        * Input property.
        * set to true when item has leading Symbol.
        */
-      leadingIconSymbol: { type: Boolean , reflect: true },
+      leadingIconSymbol: { type: Boolean, reflect: true },
 
-      _opened: {
-        type: Boolean,
-        reflect: true,
-        attribute: "opened",
-      },
+      _opened: { type: Boolean, reflect: true, attribute: 'opened' },
 
-      level: {
-        type: Boolean,
-      },
+      level: { type: Boolean },
 
       /**
        * Input property.
        * Specifies Tooltip shows or not. when action is disabled.
        */
-      disabledActionTooltip: {
-        type: Boolean,
-        reflect: true,
-      },
+      disabledActionTooltip: { type: Boolean, reflect: true },
 
-      divider: {
-        type: Boolean,
-        reflect: true,
-        attribute: "divider",
-      },
+      divider: { type: Boolean, reflect: true, attribute: 'divider' },
 
-      hiddenActions: { type: Array }
+      hiddenActions: { type: Array },
     };
   }
 
@@ -107,29 +85,29 @@ class DwMenuListItem extends LitElement {
   }
 
   willUpdate(changedProperties) {
-    if (changedProperties.has("action")) {
+    if (changedProperties.has('action')) {
       this.divider = this.action.divider;
     }
   }
 
   render() {
-    let paddingLeft = this.level * 16 + "px";
-    
+    let paddingLeft = this.level * 16 + 'px';
+
     return html` ${this._getDisabledActionTooltip(this.action.name)
       ? html`<span id=${this.action.name}>
             <dw-list-item
-              style="${styleMap({ "padding-left": paddingLeft })}"
+              style="${styleMap({ 'padding-left': paddingLeft })}"
               title1="${this.action.label}"
               leadingIcon="${this.action.icon}"
               ?danger="${this.action.danger}"
               leadingIconFont="${this.action.iconFont}"
-              trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
+              trailingIcon="${this._opened ? 'expand_less' : 'expand_more'}"
               ?hasTrailingIcon=${this._isSubActionAvailable}
               ?hasLeadingIcon="${this.hasLeadingIcon}"
               ?leadingIconSymbol="${this.leadingIconSymbol}"
               selectionMode="none"
               ?disabled="${this.disabledActionTooltip}"
-              @click="${(e) => this._onAction(e, this.action)}"
+              @click="${e => this._onAction(e, this.action)}"
             ></dw-list-item
           ></span>
           <dw-tooltip for=${this.action.name} placement="bottom"
@@ -137,18 +115,18 @@ class DwMenuListItem extends LitElement {
           >`
       : html`
           <dw-list-item
-            style="${styleMap({ "padding-left": paddingLeft })}"
+            style="${styleMap({ 'padding-left': paddingLeft })}"
             title1="${this.action.label}"
             ?danger="${this.action.danger}"
             leadingIcon="${this.action.icon}"
             leadingIconFont="${this.action.iconFont}"
-            trailingIcon="${this._opened ? "expand_less" : "expand_more"}"
+            trailingIcon="${this._opened ? 'expand_less' : 'expand_more'}"
             ?hasTrailingIcon=${this._isSubActionAvailable}
             ?hasLeadingIcon="${this.hasLeadingIcon}"
             ?leadingIconSymbol="${this.leadingIconSymbol}"
             selectionMode="none"
             ?disabled="${this.disabledActionTooltip}"
-            @click="${(e) => this._onAction(e, this.action)}"
+            @click="${e => this._onAction(e, this.action)}"
           ></dw-list-item>
           ${this.action.subAction ? this._getsubAction(this.action.subAction) : ``}
         `}`;
@@ -157,14 +135,14 @@ class DwMenuListItem extends LitElement {
   _getsubAction(actions) {
     return html`
       <dw-collapsible>
-        ${repeat(actions, (action) => {
+        ${repeat(actions, action => {
           if (this.hiddenActions && this.hiddenActions.includes(action.name)) {
             return;
           }
           return html`<dw-menu-list-item
             .action=${action}
             .level=${this.level + 1}
-            ?hasLeadingIcon=${this.action.subAction.some((e) => e.icon || e.hasLeadingIconSpace)}
+            ?hasLeadingIcon=${this.action.subAction.some(e => e.icon || e.hasLeadingIconSpace)}
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
             .disabledActions=${this.disabledActions}
           ></dw-menu-list-item>`;
@@ -183,12 +161,10 @@ class DwMenuListItem extends LitElement {
   _onAction(e, action) {
     if (this._isSubActionAvailable) {
       this._opened = !this._opened;
-      let el = this.renderRoot.querySelector("dw-collapsible");
+      let el = this.renderRoot.querySelector('dw-collapsible');
       el && el.toggle();
     } else {
-      this.dispatchEvent(
-        new CustomEvent("actionClick", { bubbles: true, composed: true, detail: action.name })
-      );
+      this.dispatchEvent(new CustomEvent('actionClick', { bubbles: true, composed: true, detail: action.name }));
     }
   }
 
@@ -208,12 +184,8 @@ class DwMenuListItem extends LitElement {
    * @returns String disabled action tooltip text
    */
   _getDisabledActionTooltip(actionName) {
-    if (
-      this.disabledActions &&
-      this.disabledActions[actionName] &&
-      typeof this.disabledActions[actionName] === "boolean"
-    ) {
-      return "";
+    if (this.disabledActions && this.disabledActions[actionName] && typeof this.disabledActions[actionName] === 'boolean') {
+      return '';
     }
 
     return this.disabledActions && this.disabledActions[actionName];
@@ -228,4 +200,4 @@ class DwMenuListItem extends LitElement {
   }
 }
 
-customElements.define("dw-menu-list-item", DwMenuListItem);
+customElements.define('dw-menu-list-item', DwMenuListItem);

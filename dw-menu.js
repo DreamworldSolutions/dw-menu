@@ -1,4 +1,4 @@
-import { css, html } from '@dreamworld/pwa-helpers/lit.js';
+import { css, html, unsafeCSS } from '@dreamworld/pwa-helpers/lit.js';
 import { repeat } from 'lit/directives/repeat.js';
 
 // View Element
@@ -10,6 +10,7 @@ import './dw-menu-list-item.js';
 
 // Styles
 import * as TypographyLiterals from '@dreamworld/material-styles/typography-literals';
+import { DWTooltipStyle } from '@dreamworld/dw-tooltip';
 
 /**
  * # <dw-menu>
@@ -57,6 +58,10 @@ export class DwMenu extends DwCompositeDialog {
         flex: 1;
         display: flex;
         align-items: center;
+      }
+
+      .tippy-box {
+        ${unsafeCSS(DWTooltipStyle)};
       }
     `,
   ];

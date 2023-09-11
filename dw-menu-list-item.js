@@ -126,7 +126,7 @@ class DwMenuListItem extends LitElement {
               @click="${e => this._onAction(e, this.action)}"
             ></dw-list-item
           ></span>
-          <dw-tooltip for=${this.action.name} placement="bottom"
+          <dw-tooltip for=${this.action.name} placement="bottom" .appendTo=${this.parentElement ? this.parentElement : ``}
             ><span>${this._getDisabledActionTooltip(this.action.name)}</span></dw-tooltip
           >`
       : html`

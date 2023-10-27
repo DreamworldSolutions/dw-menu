@@ -21,12 +21,12 @@ const actions = [
     icon: 'share',
     iconFont: 'OUTLINED',
     divider: true,
-    subAction: [
+    subActions: [
       {
         name: 'pdf',
         label: 'PDF',
         hasLeadingIconSpace: true,
-        subAction: [
+        subActions: [
           {
             name: 'DELETE',
             label: 'Delete',

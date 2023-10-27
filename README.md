@@ -67,7 +67,7 @@ npm install @dreamworld/dw-menu
 | `label`               | `String`  | label of the action                                                                                                                      |
 | `icon`                | `String`  | Name of the icon to show as a leading icon                                                                                               |
 | `danger`              | `Boolean` | Shows action in danger mode. e.g. For delete action, you might need it.                                                                  |
-| `type`                | `String`  | Type of the action. Applicable only when action has `subAction`. possible values: `collapsible`, `submenu`. default value: `collapsible` |
+| `type`                | `String`  | Type of the action. Applicable only when action has `subActions`. possible values: `collapsible`, `submenu`. default value: `collapsible` |
 | `subActions`          | `Array[]` | Sub Actions of the current action. Used when a group of actions comes under any same parent item.                                        |
 | `divider`             | `Boolean` | Set border bottom of the list item.                                                                                                      |
 | `hasLeadingIconSpace` | `Boolean` | Leave space for the icon (40px) in the list item. only applicable when an `icon` value has not been set.                                 |
@@ -91,7 +91,7 @@ npm install @dreamworld/dw-menu
   name: "ADD",
   label: "Add",
   icon: "add",
-  subAction: [
+  subActions: [
     {name: "TOP", label: "Move to Top", icon: 'arrow_up'},
     {name: "BOTTOM", label: "Move to Bottom", icon: 'arrow_down'}
   ]
@@ -115,7 +115,7 @@ npm install @dreamworld/dw-menu
 name: "ADD",
 label: "Add",
 icon: "add",
-subAction: [
+subActions: [
 {name: "TOP", label: "Move to Top", hasLeadingIconSpace: true},
 {name: "BOTTOM", label: "Move to Bottom", hasLeadingIconSpace: true}
 ]
@@ -124,7 +124,7 @@ subAction: [
 name: "ADD",
 label: "Add",
 hasLeadingIconSpace: true
-subAction: [
+subActions: [
 {name: "TOP", label: "Move to Top", hasLeadingIconSpace: true},
 {name: "BOTTOM", label: "Move to Bottom", hasLeadingIconSpace: true}
 ]

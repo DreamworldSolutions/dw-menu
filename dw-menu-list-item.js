@@ -144,7 +144,7 @@ class DwMenuListItem extends LitElement {
             ?disabled="${this.disabledActionTooltip}"
             @click="${e => this._onAction(e, this.action)}"
           ></dw-list-item>
-          ${this.action.subAction ? this._getsubAction(this.action.subAction) : ``}
+          ${this.action.subActions ? this._getsubAction(this.action.subActions) : ``}
         `}`;
   }
 
@@ -158,7 +158,7 @@ class DwMenuListItem extends LitElement {
           return html`<dw-menu-list-item
             .action=${action}
             .level=${this.level + 1}
-            ?hasLeadingIcon=${this.action.subAction.some(e => e.icon || e.hasLeadingIconSpace)}
+            ?hasLeadingIcon=${this.action.subActions.some(e => e.icon || e.hasLeadingIconSpace)}
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
             .disabledActions=${this.disabledActions}
           ></dw-menu-list-item>`;
@@ -170,7 +170,7 @@ class DwMenuListItem extends LitElement {
   /**
    * Trigger when action item is clicked
    *
-   * if subAction is available dw-collapsible's toggle method will be called else
+   * if subActions is available dw-collapsible's toggle method will be called else
    * @param {Event} e dispatch `actionClick` event
    * Set bubbles true, composed true and actionName in detail
    */
@@ -208,11 +208,11 @@ class DwMenuListItem extends LitElement {
   }
 
   /**
-   * Checks subAction is available or not
+   * Checks subActions is available or not
    * @returns Boolean
    */
   get _isSubActionAvailable() {
-    return Array.isArray(this.action.subAction) && this.action.subAction.length !== 0;
+    return Array.isArray(this.action.subActions) && this.action.subActions.length !== 0;
   }
 }
 

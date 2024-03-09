@@ -11,6 +11,7 @@ import './dw-menu-list-item.js';
 // Styles
 import * as TypographyLiterals from '@dreamworld/material-styles/typography-literals';
 import { DWTooltipStyle } from '@dreamworld/dw-tooltip';
+import { ThemeStyle } from '@dreamworld/material-styles/theme.js';
 
 /**
  * # <dw-menu>
@@ -25,6 +26,7 @@ import { DWTooltipStyle } from '@dreamworld/dw-tooltip';
  */
 export class DwMenu extends DwCompositeDialog {
   static styles = [
+    ThemeStyle,
     DwCompositeDialog.styles,
     css`
       :host {

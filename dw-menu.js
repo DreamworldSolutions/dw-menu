@@ -26,6 +26,7 @@ import { DWTooltipStyle } from '@dreamworld/dw-tooltip';
 export class DwMenu extends DwCompositeDialog {
   static styles = [
     DwCompositeDialog.styles,
+    DWTooltipStyle,
     css`
       :host {
         display: block;
@@ -58,10 +59,6 @@ export class DwMenu extends DwCompositeDialog {
         flex: 1;
         display: flex;
         align-items: center;
-      }
-
-      .tippy-box {
-        ${unsafeCSS(DWTooltipStyle)};
       }
     `,
   ];

@@ -27,7 +27,7 @@
     "@dreamworld/dw-dialog": "^5.7.0",
     "@dreamworld/dw-icon-button": "^3.2.1",
     "@dreamworld/dw-list-item": "^4.3.1",
-    "@dreamworld/dw-tooltip": "^3.1.2-show-tooltip-with-animation.1",
+    "@dreamworld/dw-tooltip": "^3.1.2",
     "@dreamworld/material-styles": "^3.2.2",
     "@dreamworld/pwa-helpers": "^1.16.5"
   },

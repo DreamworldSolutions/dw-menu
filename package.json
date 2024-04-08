@@ -27,7 +27,7 @@
     "@dreamworld/dw-dialog": "^5.7.0",
     "@dreamworld/dw-icon-button": "^3.2.1",
     "@dreamworld/dw-list-item": "^4.3.1",
-    "@dreamworld/dw-tooltip": "^3.1.1",
+    "@dreamworld/dw-tooltip": "^3.1.2",
     "@dreamworld/material-styles": "^3.2.2",
     "@dreamworld/pwa-helpers": "^1.16.5"
   },
@@ -40,6 +40,9 @@
     "@rollup/plugin-commonjs": "^23.0.2",
     "@web/dev-server": "^0.1.35",
     "semantic-release": "^19.0.5"
+  },
+  "resolutions": {
+    "@dreamworld/dw-tooltip": "^3.1.2"
   },
   "release": {
     "branches": [

@@ -1006,10 +1006,19 @@
   dependencies:
     "@material/mwc-ripple" "0.27.0"
 
-"@dreamworld/dw-tooltip@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@dreamworld/dw-tooltip/-/dw-tooltip-3.1.1.tgz#ccf7488b79cc08c6edc9f752446a50ba0a3be9c8"
-  integrity sha512-PbOhFO51tjd3ASLRi9wEupA4ClMfXHjmIynhHjLK3xMsuPL97E1/YJP9Z5ZYUB9wu3Gr4PIvbUKgdPUSb8BfeA==
+"@dreamworld/dw-tooltip@^3.1.1", "@dreamworld/dw-tooltip@^3.1.2-show-tooltip-with-animation.1":
+  version "3.1.2-show-tooltip-with-animation.1"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-tooltip/-/dw-tooltip-3.1.2-show-tooltip-with-animation.1.tgz#d4cf30d5ea4cd250f1e438931225e3382bca8fbb"
+  integrity sha512-G9NYdLqzmSJCjNlCsDF63j2pzc5dUi672Rf6Nj7dn082EYrClrBxpH9K0KxtmbKlqZyBBIPgTHTikIG/6VYoew==
+  dependencies:
+    "@dreamworld/material-styles" "^3.0.0"
+    "@dreamworld/pwa-helpers" "^1.13.1"
+    tippy.js "^6.2.7"
+
+"@dreamworld/dw-tooltip@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@dreamworld/dw-tooltip/-/dw-tooltip-3.1.2.tgz#d02b1078101bd63c0272619cb2ca392fcb9ddd8c"
+  integrity sha512-N94OTzeGlXeSCQCjZVZYTotLK756QSBGl5M3/c1AakpfblOBrQiTUErIwnmqsY4DVupUSQVy+/fXrqroDfGBLw==
   dependencies:
     "@dreamworld/material-styles" "^3.0.0"
     "@dreamworld/pwa-helpers" "^1.13.1"

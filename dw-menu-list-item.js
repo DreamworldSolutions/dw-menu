@@ -107,12 +107,10 @@ class DwMenuListItem extends LitElement {
   }
 
   render() {
-    let paddingLeft = this.level * 16 + 'px';
-
     return html` ${this._getDisabledActionTooltip(this.action.name)
       ? html`<span id=${this.action.name}>
             <dw-list-item
-              style="${styleMap({ 'padding-left': paddingLeft })}"
+              style="${styleMap(this._setListItemStyle)}"
               title1="${this.action.label}"
               leadingIcon="${this.action.icon}"
               ?danger="${this.action.danger}"
@@ -131,7 +129,7 @@ class DwMenuListItem extends LitElement {
           >`
       : html`
           <dw-list-item
-            style="${styleMap({ 'padding-left': paddingLeft })}"
+            style="${styleMap(this._setListItemStyle)}"
             title1="${this.action.label}"
             ?danger="${this.action.danger}"
             leadingIcon="${this.action.icon}"
@@ -165,6 +163,30 @@ class DwMenuListItem extends LitElement {
         })}
       </dw-collapsible>
     `;
+  }
+
+  get _setListItemStyle() {
+    const item = this.action;
+    let paddingLeft = this.level * 16 + 'px';
+    let styles = {};
+
+    if (item.iconColor) {
+      if (item.iconColor.startsWith('-')) {
+        styles = {
+          '--dw-icon-color': `var(${item.iconColor})`,
+          '--mdc-theme-text-primary': `var(${item.iconColor})`,
+          '--mdc-theme-on-surface': `var(${item.iconColor})`,
+        };
+      } else {
+        styles = {
+          '--dw-icon-color': `${item.iconColor}`,
+          '--mdc-theme-text-primary': `${item.iconColor}`,
+          '--mdc-theme-on-surface': `${item.iconColor}`,
+        };
+      }
+    }
+
+    return { 'padding-left': paddingLeft, ...styles };
   }
 
   /**

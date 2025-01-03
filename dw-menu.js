@@ -12,6 +12,22 @@ import './dw-menu-list-item.js';
 import * as TypographyLiterals from '@dreamworld/material-styles/typography-literals';
 import { DWTooltipStyle } from '@dreamworld/dw-tooltip';
 
+const KeyCode = {
+  ENTER: 13,
+  ARROW_UP: 38,
+  ARROW_DOWN: 40,
+  ARROW_LEFT: 37,
+  ARROW_RIGHT: 39,
+  SPACE: 32,
+  SHIFT: 16,
+  TAB: 9,
+  ESC: 27
+};
+
+const Direction = {
+  UP: "up",
+  DOWN: "down",
+};
 /**
  * # <dw-menu>
  *
@@ -143,53 +159,33 @@ export class DwMenu extends DwCompositeDialog {
     disableAutoClose: {
       type: Boolean,
     },
+
+    /**
+     * index of activated Item
+     * default: -1
+     */
+    _activatedIndex: { type: Number },
+
   };
 
   constructor() {
     super();
     this.type = 'popover';
-
     this.mobileMode = false;
     this.keepAnchorVisible = false;
     this.placement = 'top-start';
     this.showClose = false;
     this.hiddenActions = [];
+    this._activatedIndex = -1;
+    this._firstItemIndex = 0;
   }
 
-  // Remove this custom getter/setter when `willUpdate` will be supported
-  set heading(value) {
-    let oldValue = this._heading;
-
-    if (oldValue === value) {
-      return;
+  willUpdate(props) {
+    super.willUpdate(props);
+  
+    if (props.has('heading') || props.has('showClose')) {
+      this._showHeader = Boolean(this.heading) || this.showClose;
     }
-
-    this._showHeader = Boolean(value) || this.showClose;
-    this._heading = value;
-
-    this.requestUpdate('heading', oldValue);
-  }
-
-  get heading() {
-    return this._heading;
-  }
-
-  // Remove this custom getter/setter when `willUpdate` will be supported
-  set showClose(value) {
-    let oldValue = this._showClose;
-
-    if (oldValue === value) {
-      return;
-    }
-
-    this._showHeader = Boolean(this.heading) || value;
-    this._showClose = value;
-
-    this.requestUpdate('showClose', oldValue);
-  }
-
-  get showClose() {
-    return this._showClose;
   }
 
   connectedCallback() {
@@ -208,9 +204,10 @@ export class DwMenu extends DwCompositeDialog {
     return html`
       ${repeat(
         this._getActions(),
-        action =>
+        (action, index) =>
           html`<dw-menu-list-item
             .action=${action}
+            ?activated=${this._isItemActivated(index)}
             ?hasLeadingIcon=${this.actions.some(e => e.icon || e.hasLeadingIconSpace)}
             ?leadingIconSymbol=${action.leadingIconSymbol}
             ?disabledActionTooltip="${this._isActionDisabled(action.name)}"
@@ -220,6 +217,24 @@ export class DwMenu extends DwCompositeDialog {
           ></dw-menu-list-item>`
       )}
     `;
+  }
+
+  get _filteredActions() {
+    return this.actions?.filter(action => !this.hiddenActions.includes(action.name) && !this._isActionDisabled(action.name))
+  }
+
+  get _activatedItem() {
+    const index = this._activatedIndex;
+    return this._filteredActions && this._filteredActions[index];
+  }
+
+  /**
+ * returns whether given item's index is activated or not
+ * @param {Number} index
+ * @returns {Boolean}
+ */
+  _isItemActivated(index) {
+    return index === this._activatedIndex;
   }
 
   /**
@@ -262,12 +277,66 @@ export class DwMenu extends DwCompositeDialog {
    * Set actionName in detail
    */
   _onAction(e) {
-    e.stopPropagation();
-    e.preventDefault();
+    e?.stopPropagation?.();
+    e?.preventDefault?.();
     this.dispatchEvent(new CustomEvent('action', { detail: e.detail }));
     if (!this.disableAutoClose) {
       this.close();
     }
+  }
+
+  /**
+ * @override
+ * @param {Object} e Event
+ */
+  __onKeyDown(e) {
+    if (!this.opened) {
+      return;
+    }
+
+    const keyCode = e.keyCode || e.which;
+    const { ARROW_DOWN, ARROW_UP, ENTER } = KeyCode;
+
+
+    if (![ARROW_DOWN, ARROW_UP, ENTER].includes(keyCode)) {
+      return;
+    }
+
+    if ([ARROW_DOWN, ARROW_UP].includes(keyCode) || ([ENTER].includes(keyCode) && this._activatedItem)) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    // List navigation & Selection
+    switch (keyCode) {
+      case ARROW_UP:
+        this._moveActivated(Direction.UP);
+        return;
+      case ARROW_DOWN:
+        this._moveActivated(Direction.DOWN);
+        return;
+      case ENTER:
+        if (this._activatedItem) {
+          const action = this._activatedItem.name;
+          this._onAction({detail: action});
+        }
+        break;
+    }
+  }
+
+  _moveActivated(direction) {
+    const numberOfItems = this._filteredActions?.length;
+    if (!numberOfItems) return;
+
+    if (direction === Direction.UP && this._activatedIndex === this._firstItemIndex) return;
+
+    if (direction === Direction.DOWN && this._activatedIndex === numberOfItems - 1) return;
+
+    let activatedIndex = this._activatedIndex;
+
+    activatedIndex = direction === Direction.UP ? Math.max(0, this._activatedIndex - 1) : Math.min(this._activatedIndex + 1, numberOfItems);
+
+    this._activatedIndex = activatedIndex;
   }
 }
 

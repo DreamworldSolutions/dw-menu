@@ -225,7 +225,7 @@ export class DwMenu extends DwCompositeDialog {
 
   get _activatedItem() {
     const index = this._activatedIndex;
-    return this._filteredActions && this._filteredActions[index];
+    return this._filteredActions?.[index];
   }
 
   /**
@@ -328,15 +328,11 @@ export class DwMenu extends DwCompositeDialog {
     const numberOfItems = this._filteredActions?.length;
     if (!numberOfItems) return;
 
-    if (direction === Direction.UP && this._activatedIndex === this._firstItemIndex) return;
+    if (direction === Direction.UP && this._activatedIndex <= this._firstItemIndex) return;
 
     if (direction === Direction.DOWN && this._activatedIndex === numberOfItems - 1) return;
 
-    let activatedIndex = this._activatedIndex;
-
-    activatedIndex = direction === Direction.UP ? Math.max(0, this._activatedIndex - 1) : Math.min(this._activatedIndex + 1, numberOfItems);
-
-    this._activatedIndex = activatedIndex;
+    this._activatedIndex = direction === Direction.UP ? this._activatedIndex - 1 : this._activatedIndex + 1;
   }
 }
 

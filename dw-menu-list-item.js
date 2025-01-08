@@ -121,7 +121,7 @@ class DwMenuListItem extends LitElement {
               ?hasTrailingIcon=${this._isSubActionAvailable}
               ?hasLeadingIcon="${this.hasLeadingIcon}"
               ?leadingIconSymbol="${this.leadingIconSymbol}"
-              ?activated="${this.activated}"
+              ?activated=${this.activated}
               selectionMode="none"
               ?disabled="${this.disabledActionTooltip}"
               @click="${e => this._onAction(e, this.action)}"
@@ -142,7 +142,7 @@ class DwMenuListItem extends LitElement {
             ?hasLeadingIcon="${this.hasLeadingIcon}"
             ?leadingIconSymbol="${this.leadingIconSymbol}"
             selectionMode="none"
-            ?activated="${this.activated}"
+            ?activated=${this.activated}
             ?disabled="${this.disabledActionTooltip}"
             @click="${e => this._onAction(e, this.action)}"
           ></dw-list-item>

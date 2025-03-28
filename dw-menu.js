@@ -297,20 +297,23 @@ export class DwMenu extends DwCompositeDialog {
     }
 
     const keyCode = e.keyCode || e.which;
-    const { ARROW_DOWN, ARROW_UP, ENTER } = KeyCode;
+    const { ARROW_DOWN, ARROW_UP, ENTER, TAB } = KeyCode;
 
 
-    if (![ARROW_DOWN, ARROW_UP, ENTER].includes(keyCode)) {
+    if (![ARROW_DOWN, ARROW_UP, ENTER, TAB].includes(keyCode)) {
       return;
     }
 
-    if ([ARROW_DOWN, ARROW_UP].includes(keyCode) || ([ENTER].includes(keyCode) && this._activatedItem)) {
+    if ([ARROW_DOWN, ARROW_UP, TAB].includes(keyCode) || ([ENTER].includes(keyCode) && this._activatedItem)) {
       e.stopPropagation();
       e.preventDefault();
     }
 
     // List navigation & Selection
     switch (keyCode) {
+      case TAB:
+          this.close();
+          return;
       case ARROW_UP:
         this._moveActivated(Direction.UP);
         return;

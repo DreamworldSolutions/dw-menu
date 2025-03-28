@@ -290,6 +290,8 @@ export class DwMenu extends DwCompositeDialog {
  * @param {Object} e Event
  */
   __onKeyDown(e) {
+    super.__onKeyDown(e);
+
     if (!this.opened) {
       return;
     }
